@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+# Las funciones en Django siempre necesitan o deben ir con parametros
+def saludar(self):
+    print('Hola mundo como estás?')
+    return True
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('saludar/', saludar),
 ]

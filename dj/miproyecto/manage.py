@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
+#Este archivo contiene las instrucciones para ejecutar todo nuestro proyecto
 import os
 import sys
 
