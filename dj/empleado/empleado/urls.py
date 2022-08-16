@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from applications.home.views import IndexView #llamo a la clase que esta dentro de la  vista de mi aplicacion home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('home/', IndexView.as_view()), #siempre que trabaje con algo que hereda de Django se pone el .as_view
 ]
