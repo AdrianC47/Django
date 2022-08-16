@@ -19,3 +19,4 @@ El archivo asgi.py es como un enlace para que python pueda levantar el servidor
 El archivo settings.py es un archivo de configuración donde habrán rutas, bases de datos , etc.
 El archivo urls.py es para indicar los paths que va a tener nuestro proyecto
 El archivo wsgi.py es como una herramienta que nos ayuda a ejecutar correctamente nuestro servidor
+TemplateView es únicamente para mostrar pantallas HTML directamente, es decir para apariencia.

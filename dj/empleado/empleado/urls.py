@@ -13,11 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+#ESTE ES MI URL PRINCIPAL, AQUI VOY A LLAMAR A LOS DEMAS URL DE LAS APPS
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from applications.home.views import IndexView #llamo a la clase que esta dentro de la  vista de mi aplicacion home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', IndexView.as_view()), #siempre que trabaje con algo que hereda de Django se pone el .as_view
+    path('', include('applications.home.urls')) # con el include indico que incluya el otro urls
 ]
