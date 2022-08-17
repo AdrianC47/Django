@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView #llamo a una vista propia de Django(vista generica)
+from django.views.generic import TemplateView, ListView  #llamo a una vista propia de Django(vista generica)
+
+from .models import Prueba
 # Create your views here.
 #LOGICA DEL NEGOCIO
 
@@ -14,3 +16,9 @@ class PruebaListView(ListView):
     queryset=['Heroes del Silencio','Nirvana','Oasis']##llamado queryset
     #Para poder llamar o mostrar un objeto/variable en un template necesito un object_context_name y se usan SIEMPRE {{}}
     context_object_name= 'lista_prueba' 
+
+
+class ModeloPruebaListView(ListView):
+    model = Prueba
+    template_name = "home/prueba.html"
+    context_object_name='lista_prueba'

@@ -5,4 +5,4 @@ from .models import Prueba
 
 #Le digo a Django que quiero intetractuar con el modelo creado con
 
-admin.register(Prueba)
+admin.site.register(Prueba)
