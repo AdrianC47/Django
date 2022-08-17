@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView #llamo a una vista propia de Django(vista generica)
+from django.views.generic import TemplateView, ListView #llamo a una vista propia de Django(vista generica)
 # Create your views here.
 #LOGICA DEL NEGOCIO
 
@@ -7,3 +7,10 @@ from django.views.generic import TemplateView #llamo a una vista propia de Djang
 class IndexView(TemplateView): #aqui se hace herencia , esto es la logica, en este caso la logica es muy sencilla ya que simplemente
     template_name = 'home/home.html' #me dice muestrame un template llamado home.html
                                 #Sin embargo esta logica puede luego tener metodos/funciones por ejemplo consultar una bd, guardar registros, etc
+
+class PruebaListView(ListView):
+    template_name= 'home/lista.html'
+    #Como esto lo que hace va a listar pues necesita mas cosas por ejemplo qué vamos a listar, para ello pasaremos un parametro
+    queryset=['Heroes del Silencio','Nirvana','Oasis']##llamado queryset
+    #Para poder llamar o mostrar un objeto/variable en un template necesito un object_context_name y se usan SIEMPRE {{}}
+    context_object_name= 'lista_prueba' 

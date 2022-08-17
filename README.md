@@ -20,3 +20,5 @@ El archivo settings.py es un archivo de configuración donde habrán rutas, base
 El archivo urls.py es para indicar los paths que va a tener nuestro proyecto
 El archivo wsgi.py es como una herramienta que nos ayuda a ejecutar correctamente nuestro servidor
 TemplateView es únicamente para mostrar pantallas HTML directamente, es decir para apariencia.
+Haciendo referencia a los modelos pues Django usa ORM es decir Django transforma automaticamente el código a SQL por ello
+en los modelos unicamente escribiremos codigo python 
