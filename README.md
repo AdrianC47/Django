@@ -19,6 +19,12 @@ El archivo asgi.py es como un enlace para que python pueda levantar el servidor
 El archivo settings.py es un archivo de configuración donde habrán rutas, bases de datos , etc.
 El archivo urls.py es para indicar los paths que va a tener nuestro proyecto
 El archivo wsgi.py es como una herramienta que nos ayuda a ejecutar correctamente nuestro servidor
-TemplateView es únicamente para mostrar pantallas HTML directamente, es decir para apariencia.
-Haciendo referencia a los modelos pues Django usa ORM es decir Django transforma automaticamente el código a SQL por ello
-en los modelos unicamente escribiremos codigo python 
+- TemplateView es únicamente para mostrar pantallas HTML directamente, es decir para apariencia.
+- Haciendo referencia a los modelos pues Django usa ORM es decir Django transforma automaticamente el código a SQL por ello
+en los modelos unicamente escribiremos codigo python.
+- Si yo quiero que una tabla/modelo que hago en mi models.py se cree o se vea reflejado en mi bd pues ejecuto: python manage.py makemigrations y Django detectara si hay cambios y si estoy conforme con los mismos ejecuto:
+python manage.py migrate
+- Para poder ver que se ha creado una tabla en mi bd Django lo que ofrece es el archivo de admin.py, en el cual podemos tener  una interfaz
+que nos permite interactuar con nuestra BD
+
+- Para crearme un superusuario junto con su password para la administración de Django ejecuto lo siguiente <= python manage  createsuperuser
