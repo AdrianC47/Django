@@ -9,7 +9,7 @@ class Habilidades(models.Model):
 
     class Meta:
         verbose_name = 'Habilidad'
-        verbose_name_plural ='Habilidades Empleados'
+        verbose_name_plural ='Habilidades'
     def __str__(self):
         return str(self.id) + '-' + self.habilidad
         

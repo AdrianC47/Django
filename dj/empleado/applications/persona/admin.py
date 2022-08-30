@@ -10,6 +10,10 @@ class EmpleadoAdmin(admin.ModelAdmin): #Le digo que quiero que trabaje con herra
             'last_name',
             'departamento',
             'job',
-        )    
+        ) 
+        search_fields =  ('first_name',)   
+        list_filter = ('job','habilidades')
+        #El siguiente parametro solo funciona para las relaciones muchos a muchos
+        filter_horizontal=('habilidades',)
 
 admin.site.register(Empleado, EmpleadoAdmin)
