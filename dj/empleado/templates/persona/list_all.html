@@ -1,8 +1,17 @@
 <h1>Lista de Todos los Empleados</h1>
 <ul>
-    
-    {% for e  in lista  %}
-        <li>{{e}}</li>
-    {% endfor %}
-        
+  {% for e in lista %}
+  <li>{{e}}</li>
+  
+  {% endfor %}
+ 
 </ul>
+<section class="paginacion">
+    <ul>
+        <button><a href="http://127.0.0.1:8000/listar-todo-empleados/?page=1" class="active">1</a></button>
+        <button><a href="http://127.0.0.1:8000/listar-todo-empleados/?page=2">2</a></button>
+        <button><a href="http://127.0.0.1:8000/listar-todo-empleados/?page=3">3</a></button>
+        <button><a href="http://127.0.0.1:8000/listar-todo-empleados/?page=4">4</a></button>
+        <button><a href="http://127.0.0.1:8000/listar-todo-empleados/?page=5">5</a></button>
+    </ul>
+</section>
