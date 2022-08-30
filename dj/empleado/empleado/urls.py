@@ -20,5 +20,6 @@ from applications.home.views import IndexView #llamo a la clase que esta dentro 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('applications.home.urls')) # con el include indico que incluya el otro urls
+    path('', include('applications.home.urls')), # con el include indico que incluya el otro urls
+    path('', include('applications.persona.urls')) # con el include indico que incluya el otro urls
 ]
