@@ -37,7 +37,8 @@ class Empleado(models.Model):
         verbose_name = 'Mi Empleado'
         verbose_name_plural ='Empleados de la Empresa'
         ordering = ['-first_name','last_name']
-        unique_together = ('first_name','departamento')    
+        unique_together = ('first_name','departamento') 
+           
     
     def __str__(self):
         return str(self.id) + '-' + self.first_name + '-' +self.last_name 
