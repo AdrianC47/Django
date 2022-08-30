@@ -1,0 +1,15 @@
+<h1>Detalle de un empleado</h1>
+{{object}} <br><!--Con esta palabra reservada recupero todo mi registro/objeto de mi DetailView-->
+{{empleado}}          <!--Tambien se puede hacer de esta forma, llamando al modelo pero todo en minuscula-->  
+
+<h3>Todos los Datos:</h3>
+<p>{{ empleado.first_name }}</p>
+<p>{{ empleado.last_name }}</p>
+<p>{{ empleado.departamento }}</p>
+<h3 style="color: blue">Habilidades del Empleado</h3>
+<ul>
+    {% for h in empleado.habilidades.all %}
+    <li>{{ h.habilidad }}</li>
+    {% endfor %}
+</ul>
+  

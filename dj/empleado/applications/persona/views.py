@@ -1,6 +1,6 @@
 from ast import keyword
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 #models
 from .models import Empleado
@@ -82,3 +82,9 @@ class ListHabilidadesEmpleado(ListView):
 # 3.- Listar empleados por trabajo
 # 4.- Listar los empleados por palabras clave
 # 5.- Listar habilidades de  un empleado
+
+
+
+class EmpleadoDetailView(DetailView):
+    model = Empleado
+    template_name = "persona/detail_empleado.html"
