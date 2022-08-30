@@ -1,6 +1,6 @@
 from ast import keyword
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
 #models
 from .models import Empleado
@@ -96,3 +96,7 @@ class EmpleadoDetailView(DetailView):
         context['titulo'] = 'Empleado del mes'
         return context
     
+
+class EmpleadoCreateView(CreateView):#esta vista sirve para registrar algo en un modelo de BD, es una vista generica
+    model = Empleado          #para crear registros en el modelo de base de datos
+    template_name = "persona/add.html"
