@@ -8,7 +8,10 @@ from .models import Empleado
 class ListAllEmpleados(ListView): #Toda vista generica o todo vista basada en clases requiere de un template html
     template_name = 'persona/list_all.html'
     model = Empleado
+    #para hacer paginacion en Django se hace lo siguiente
+    paginate_by = 4 
     context_object_name= 'lista' 
+    ordering = 'first_name'
 
 #2
 class ListByAreaEmpleado(ListView): 
