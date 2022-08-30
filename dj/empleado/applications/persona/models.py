@@ -1,5 +1,6 @@
 from enum import unique
 from django.db import models
+from ckeditor.fields import RichTextField
 #
 from applications.departamento.models import Departamento
 # Create your models here.
@@ -32,13 +33,14 @@ class Empleado(models.Model):
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='empleado', blank= True,null= True)
     habilidades = models.ManyToManyField(Habilidades)#Relacion muchos a muchos
+    hoja_vida = RichTextField()
 
     class Meta:
         verbose_name = 'Mi Empleado'
         verbose_name_plural ='Empleados de la Empresa'
         ordering = ['-first_name','last_name']
         unique_together = ('first_name','departamento') 
-           
+
     
     def __str__(self):
         return str(self.id) + '-' + self.first_name + '-' +self.last_name 

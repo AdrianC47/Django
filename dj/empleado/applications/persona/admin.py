@@ -11,6 +11,7 @@ class EmpleadoAdmin(admin.ModelAdmin): #Le digo que quiero que trabaje con herra
             'departamento',
             'job',
             'full_name',
+            'id',
         ) 
         #
         def full_name(self, obj):

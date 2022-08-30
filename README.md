@@ -30,3 +30,4 @@ que nos permite interactuar con nuestra BD
 - Para crearme un superusuario junto con su password para la administración de Django ejecuto lo siguiente <= python manage  createsuperuser
 
 - Django entiende que ya todas las tablas de una BD ya tiene una primary key por lo que la crea internamente
+- Instalar Ckeditor <== pip install django-ckeditor
