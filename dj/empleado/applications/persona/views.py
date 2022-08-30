@@ -59,6 +59,24 @@ class ListEmpleadosByKword(ListView):
         )
         print('lista resultado: ',lista)
         return lista
+
+
+# 5 
+
+class ListHabilidadesEmpleado(ListView):
+    template_name = 'persona/habilidades.html'
+    context_object_name = 'habilidades'
+
+    def get_queryset(self):
+        parametroId = self.request.GET.get("paramId")# se pone '' porque es una tupla
+        if(parametroId != None):
+            empleado = Empleado.objects.get(id=parametroId) #aqui se usa el get puesto que solo quiero un objeto de toda mi lista de empleados
+            lista = empleado.habilidades.all()
+        else:
+            lista = []
+        return lista
+        #print(empleado.habilidades.all()) #con el all() recupero todas las habilidades de un empleado
+
 # 1.- Listar todos los empleados de la empresa
 # 2.- Listar todos los empleados que pertenecen a un área de la empresa
 # 3.- Listar empleados por trabajo

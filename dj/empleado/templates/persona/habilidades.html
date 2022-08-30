@@ -1,0 +1,13 @@
+<h1 style="text-align: center" >Habilidades de Empleado</h1>
+<hr style="background-color: orange;"; size="5px">
+<form method="GET">{% csrf_token %} <!--Por medio de este token doy la seguridad de la pag-->
+    <input type = "number" id="paramId" name="paramId" placeholder="Ingrese el ID Aqui">
+    <button type="submit">Buscar</button>
+</form>
+<h3>Lista de Resultados</h3>
+<ul>
+    {% for h in habilidades%}
+    <li>{{ h }}</li>
+    {% endfor %}
+</ul>
+
