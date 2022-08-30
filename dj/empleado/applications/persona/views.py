@@ -13,9 +13,17 @@ class ListAllEmpleados(ListView): #Toda vista generica o todo vista basada en cl
 class ListByAreaEmpleado(ListView): 
     """Lista Empleados de un Area """
     template_name = 'persona/list_by_area.html'
-    queryset =Empleado.objects.filter(
-        departamento__shor_name='Informática'
-    )
+    # queryset =Empleado.objects.filter( forma menos recomendada de obtener datos mediante consultas
+    #     departamento__shor_name='Informática'
+    # )
+
+    def get_queryset(self): #manera correcta de hacer los filtros
+        # puedo escribir el codigo que yo quiera, siempre debo retornar una lista de elementos
+        area = self.kwargs['shorname'] #por medio de el self.kwargs mando a llamar al parametro de la url
+        lista = Empleado.objects.filter(
+            departamento__shor_name=area
+        )
+        return lista
  
 
 # 1.- Listar todos los empleados de la empresa

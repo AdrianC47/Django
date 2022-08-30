@@ -3,6 +3,6 @@ from  . import views
 
 urlpatterns = [
     path('listar-todo-empleados/', views.ListAllEmpleados.as_view()),
-    path('listar-by-area/', views.ListByAreaEmpleado.as_view()),
+    path('listar-by-area/<shorname>/', views.ListByAreaEmpleado.as_view()), #con el <> emvio parametros 
     
 ]
