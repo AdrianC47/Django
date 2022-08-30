@@ -88,3 +88,11 @@ class ListHabilidadesEmpleado(ListView):
 class EmpleadoDetailView(DetailView):
     model = Empleado
     template_name = "persona/detail_empleado.html"
+
+    
+    def get_context_data(self, **kwargs): #este metodo sirve para enviar alguna variable extra al template
+        context = super(EmpleadoDetailView, self).get_context_data(**kwargs)
+        #todo un proceso
+        context['titulo'] = 'Empleado del mes'
+        return context
+    
