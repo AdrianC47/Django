@@ -31,3 +31,4 @@ que nos permite interactuar con nuestra BD
 
 - Django entiende que ya todas las tablas de una BD ya tiene una primary key por lo que la crea internamente
 - Instalar Ckeditor <== pip install django-ckeditor
+- Recordar que el Navegador es el cliente y nuestro software esta en un servidor alojado el cual esta recibiendo solicitudes o peticiones
