@@ -100,3 +100,6 @@ class EmpleadoDetailView(DetailView):
 class EmpleadoCreateView(CreateView):#esta vista sirve para registrar algo en un modelo de BD, es una vista generica
     model = Empleado          #para crear registros en el modelo de base de datos
     template_name = "persona/add.html"
+    #fields = ['first_name', 'last_name', 'job'] #Se requiere del fields para poder indicar qué
+                               # atributos del modelo queremos registrar por defecto, o que se pinten en pantalla
+    fields =('__all__') # <=== de esta manera selecciono todos los atributos

@@ -8,5 +8,5 @@ urlpatterns = [
     path('buscar-empleado/', views.ListEmpleadosByKword.as_view()), #con el <> emvio parametros 
     path('lista-habilidades-empleado/', views.ListHabilidadesEmpleado.as_view()), #con el <> emvio parametros 
     path('ver-empleado/<pk>', views.EmpleadoDetailView.as_view()),
-    path('add-empleado/<pk>', views.EmpleadoCreateView.as_view())   
+    path('add-empleado/', views.EmpleadoCreateView.as_view())   
 ]
