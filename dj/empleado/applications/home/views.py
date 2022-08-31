@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView  #llamo a una vista propia de Django(vista generica)
+from django.views.generic import TemplateView, ListView,CreateView  #llamo a una vista propia de Django(vista generica)
 
 from .models import Prueba
 # Create your views here.
@@ -22,3 +22,9 @@ class ModeloPruebaListView(ListView):
     model = Prueba
     template_name = "home/prueba.html"
     context_object_name='lista_prueba'
+
+class PruebaCreateView(CreateView):
+    template_name = "home/add.html"
+    model = Prueba
+    fields = ['titulo','subtitulo','cantidad']
+    success_url = '/'

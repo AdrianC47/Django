@@ -4,5 +4,6 @@ from  . import views
 urlpatterns = [
     path('home/', views.IndexView.as_view()), #siempre que trabaje con algo que hereda de Django se pone el .as_view
     path('lista/', views.PruebaListView.as_view()),
-    path('lista-prueba/',views.ModeloPruebaListView.as_view())
+    path('lista-prueba/',views.ModeloPruebaListView.as_view()),
+    path('add/', views.PruebaCreateView.as_view(), name ='prueba_add'),
 ]
