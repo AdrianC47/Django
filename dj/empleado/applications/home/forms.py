@@ -22,7 +22,7 @@ class PruebaForm(forms.ModelForm):
             'titulo': forms.TextInput(
                 attrs= {
                     'placeholder': 'Ingrese el Titulo aquí',
-                
+                    #  'size' : '80'
                     
                 }
             )
