@@ -1,7 +1,7 @@
 from ast import keyword
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, TemplateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, TemplateView, UpdateView,DeleteView
 
 #models
 from .models import Empleado
@@ -144,3 +144,11 @@ class EmpleadoUpdateView(UpdateView):
         #Logica del proceso
         print('******************METODO FORM VALID ****************')
         return super(EmpleadoUpdateView, self).form_valid(form)
+
+
+class EmpleadoDeleteView(DeleteView):
+    model = Empleado
+    template_name = "persona/delete.html"
+    success_url=reverse_lazy('persona_app:correcto')
+
+ 
