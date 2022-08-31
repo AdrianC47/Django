@@ -130,3 +130,17 @@ class EmpleadoUpdateView(UpdateView):
 
     fields=  ['first_name', 'last_name', 'job','departamento','habilidades']
     success_url=reverse_lazy('persona_app:correcto')
+
+    # El orden comun  es primero el post y luego el form_valid
+    # En el request vienen todas las solicitudes que se hagan por el protocolo HTTP hacia nuestro servidor
+    def post(self, request, *args, **kwargs):
+        print('*********************MÉTODO POST*************************')
+        print('=========================================================')
+        print(request.POST) # me manda un diccionario
+        print(request.POST['last_name'])# de esta forma recupero valores del metodo post y puedo operar con los mismos
+        return super().post(request, *args, **kwargs)
+
+    def form_valid (self, form):
+        #Logica del proceso
+        print('******************METODO FORM VALID ****************')
+        return super(EmpleadoUpdateView, self).form_valid(form)
