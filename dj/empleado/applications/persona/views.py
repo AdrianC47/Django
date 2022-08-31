@@ -125,5 +125,8 @@ class EmpleadoCreateView(CreateView):#esta vista sirve para registrar algo en un
         return super(EmpleadoCreateView,self).form_valid(form) #con el super heredo de mi clase EmpleadoCreateView la funcion form valid para sobreescribirla
 
 class EmpleadoUpdateView(UpdateView):
+    model=Empleado
     template_name = "persona/update.html"
-    modeL=Empleado
+
+    fields=  ['first_name', 'last_name', 'job','departamento','habilidades']
+    success_url=reverse_lazy('persona_app:correcto')
