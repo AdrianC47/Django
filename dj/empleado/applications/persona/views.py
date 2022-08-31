@@ -106,8 +106,15 @@ class SuccessView(TemplateView):
 class EmpleadoCreateView(CreateView):#esta vista sirve para registrar algo en un modelo de BD, es una vista generica
     model = Empleado          #para crear registros en el modelo de base de datos
     template_name = "persona/add.html"
-    #fields = ['first_name', 'last_name', 'job'] #Se requiere del fields para poder indicar qué
+    fields = ['first_name', 'last_name', 'job','departamento','habilidades'] #Se requiere del fields para poder indicar qué
                                # atributos del modelo queremos registrar por defecto, o que se pinten en pantalla
-    fields =('__all__') # <=== de esta manera selecciono todos los atributos
+    #fields =('__all__') # <=== de esta manera selecciono todos los atributos
     success_url=reverse_lazy('persona_app:correcto') #Tambien se debe indicar la url de la pag a donde se redireccionara una vez hecho un submit del formulario
                                                      #Con el . indico que se redireccione a la misma pag
+
+
+#Se plantea que se pueda guardar el nombre y apellido en un solo atributo, para ello se intercepta el siguiente 
+#método
+    def form_valid(self, form):
+        #Lógica  del proceso
+        return super(EmpleadoCreateView,self).form_valid(form) #con el super heredo de mi clase EmpleadoCreateView la funcion form valid para sobreescribirla

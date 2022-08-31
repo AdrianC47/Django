@@ -10,7 +10,7 @@ Sin embargo para agilizar lo que se puede hacer es  configurar el manage.py para
 y una vez hecho esto solo es necesario el python manage.py runserver
 Para crear una aplicacion <== python manage.py startapp nombreAplicacion y si no estoy en la misma carpeta que el manage.py
 pues lo que se usa es django-admin startapp (nombre de la aplicacion)
-
+Anexos:https://ccbv.co.uk/
 
 
 ==================================================================
