@@ -117,4 +117,9 @@ class EmpleadoCreateView(CreateView):#esta vista sirve para registrar algo en un
 #método
     def form_valid(self, form):
         #Lógica  del proceso
+        #empleado = form.save()#Con esta instruccion lo que estoy diciendo es que almacene el formulario que ya tiene datos validos  en la BD(sin embargno no es muy optimo puesto que se guardaria 2 veces en la BD)
+        empleado = (form.save(commit=False))#con esto ya no se hace doble guardado sino solo se crea la instancia
+        print(empleado)        
+        empleado.full_name = empleado.first_name + ' '+ empleado.last_name
+        empleado.save()#Esto es una instancia entonces puedo llamar al metodo save que tiene internamente por la ORM de Django
         return super(EmpleadoCreateView,self).form_valid(form) #con el super heredo de mi clase EmpleadoCreateView la funcion form valid para sobreescribirla
