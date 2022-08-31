@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, ListView,CreateView  #llamo a una vista propia de Django(vista generica)
 
 from .models import Prueba
-# Create your views here.
+from .forms import PruebaForm
 #LOGICA DEL NEGOCIO
 
 #Los archivos html deben ir siempre en una carpeta llamada templates
@@ -26,5 +26,5 @@ class ModeloPruebaListView(ListView):
 class PruebaCreateView(CreateView):
     template_name = "home/add.html"
     model = Prueba
-    fields = ['titulo','subtitulo','cantidad']
+    form_class = PruebaForm
     success_url = '/'
