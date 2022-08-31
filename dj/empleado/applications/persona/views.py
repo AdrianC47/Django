@@ -1,7 +1,7 @@
 from ast import keyword
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, TemplateView
+from django.views.generic import ListView, DetailView, CreateView, TemplateView, UpdateView
 
 #models
 from .models import Empleado
@@ -123,3 +123,7 @@ class EmpleadoCreateView(CreateView):#esta vista sirve para registrar algo en un
         empleado.full_name = empleado.first_name + ' '+ empleado.last_name
         empleado.save()#Esto es una instancia entonces puedo llamar al metodo save que tiene internamente por la ORM de Django
         return super(EmpleadoCreateView,self).form_valid(form) #con el super heredo de mi clase EmpleadoCreateView la funcion form valid para sobreescribirla
+
+class EmpleadoUpdateView(UpdateView):
+    template_name = "persona/update.html"
+    modeL=Empleado
