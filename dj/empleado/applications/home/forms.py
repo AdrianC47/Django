@@ -16,3 +16,9 @@ class PruebaForm(forms.ModelForm):
             'subtitulo',
             'cantidad'
         )
+
+    def clean_cantidad(self):#Ojo que el def debe ir a la altura de el class en la indentacion
+        cantidad = self.cleaned_data['cantidad'] #aqui recupero el valor del atributo que se ha ingresado en el formulario
+        if cantidad <10 : #raise es para excepciones en python
+                raise forms.ValidationError('Ingrese un numero mayor a 10')
+        return cantidad;
