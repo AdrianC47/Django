@@ -32,3 +32,12 @@ class PruebaCreateView(CreateView):
     model = Prueba
     form_class = PruebaForm
     success_url = '/'
+
+class HomeTemplate1View(TemplateView):
+    template_name = "home/home1.html"
+
+class HomeTemplate2View(TemplateView):
+    template_name = "home/home2.html"
+
+class HomeTemplate3View(TemplateView):
+    template_name = "home/home3.html"

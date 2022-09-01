@@ -12,4 +12,20 @@ urlpatterns = [
         views.ResumeFoundationView.as_view(),
         name='resume_foundation'
         ), 
+    # url para entender herencia e includes
+    path(
+        'home1/',
+        views.HomeTemplate1View.as_view(),
+        name='home1'
+    ),
+    path(
+        'home2/',
+        views.HomeTemplate2View.as_view(),
+        name='home2'
+    ),
+    path(
+        'home3/',
+        views.HomeTemplate3View.as_view(),
+        name='home3'
+    )
 ]
