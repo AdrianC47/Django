@@ -27,3 +27,4 @@ DATABASES = {
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIR = [BASE_DIR / 'static']#Dentro de mi directorio base busco mi carpeta static
