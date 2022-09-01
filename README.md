@@ -32,3 +32,6 @@ que nos permite interactuar con nuestra BD
 - Django entiende que ya todas las tablas de una BD ya tiene una primary key por lo que la crea internamente
 - Instalar Ckeditor <== pip install django-ckeditor
 - Recordar que el Navegador es el cliente y nuestro software esta en un servidor alojado el cual esta recibiendo solicitudes o peticiones
+- Los proyectos del curso se trabajaran con el  framework Foundation para dar estilo
+- Los archivos estáticos ayudan a que nuestro HTML se pinte mejor y son archivos estaticos ya que no cambian, es decir que su valor que se ha
+traído inicialmente cuando ha hecho la consulta a nuestro navegador a nuestro servidor, ese valor sera el mismo durante todo el ciclo de vida de nuestro proyecto
