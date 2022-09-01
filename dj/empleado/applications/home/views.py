@@ -7,7 +7,7 @@ from .forms import PruebaForm
 
 #Los archivos html deben ir siempre en una carpeta llamada templates
 class IndexView(TemplateView): #aqui se hace herencia , esto es la logica, en este caso la logica es muy sencilla ya que simplemente
-    template_name = 'home/home.html' #me dice muestrame un template llamado home.html
+    template_name = 'home/prueba.html' #me dice muestrame un template llamado home.html
                                 #Sin embargo esta logica puede luego tener metodos/funciones por ejemplo consultar una bd, guardar registros, etc
 
 class PruebaListView(ListView):
@@ -20,7 +20,7 @@ class PruebaListView(ListView):
 
 class ModeloPruebaListView(ListView):
     model = Prueba
-    template_name = "home/prueba.html"
+    template_name = "home/lista_prueba.html"
     context_object_name='lista_prueba'
 
 class PruebaCreateView(CreateView):

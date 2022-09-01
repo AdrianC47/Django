@@ -1,0 +1,13 @@
+<h1>Lista de Prueba</h1>
+{{ lista_prueba }}
+
+<ul>
+    
+    {% for prueba in lista_prueba  %}
+    <li>    
+    {{prueba.titulo}}
+    {{prueba.subtitulo}}
+    </li>   
+    {% endfor %}
+        
+</ul>
