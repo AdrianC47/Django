@@ -10,6 +10,10 @@ class IndexView(TemplateView): #aqui se hace herencia , esto es la logica, en es
     template_name = 'home/prueba.html' #me dice muestrame un template llamado home.html
                                 #Sin embargo esta logica puede luego tener metodos/funciones por ejemplo consultar una bd, guardar registros, etc
 
+
+class ResumeFoundationView(TemplateView):
+    template_name = "home/resume_foundation.html"
+
 class PruebaListView(ListView):
     template_name= 'home/lista.html'
     #Como esto lo que hace va a listar pues necesita mas cosas por ejemplo qué vamos a listar, para ello pasaremos un parametro
