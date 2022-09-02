@@ -35,3 +35,4 @@ que nos permite interactuar con nuestra BD
 - Los proyectos del curso se trabajaran con el  framework Foundation para dar estilo
 - Los archivos estáticos ayudan a que nuestro HTML se pinte mejor y son archivos estaticos ya que no cambian, es decir que su valor que se ha
 traído inicialmente cuando ha hecho la consulta a nuestro navegador a nuestro servidor, ese valor sera el mismo durante todo el ciclo de vida de nuestro proyecto
+- Dentro de la carpeta includes estarán bloques HTML de todo nuestro sistema de templates, los cuales podremos reutilizar 
