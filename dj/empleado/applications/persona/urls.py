@@ -3,7 +3,11 @@ from  . import views
 
 app_name ='persona_app' #esto me sirve para dar un nombre a todo el conjunto (arreglo) de url
 urlpatterns = [
-    path('listar-todo-empleados/', views.ListAllEmpleados.as_view(), name='listaEmpleados'),
+    path(
+        'listar-todo-empleados/',
+         views.ListAllEmpleados.as_view(),
+         name='empleados_all'
+         ),
     path('listar-by-area/<shorname>/', views.ListByAreaEmpleado.as_view(), name='listEmArea'), #con el <> emvio parametros 
     path('listar-by-job/<job>/', views.ListByJob.as_view(), name='listEmJob'), #con el <> emvio parametros 
     path('buscar-empleado/', views.ListEmpleadosByKword.as_view(), name='listEmKeyword'), #con el <> emvio parametros 

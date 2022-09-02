@@ -48,3 +48,5 @@ traído inicialmente cuando ha hecho la consulta a nuestro navegador a nuestro s
 * Include son bloques HTML que podemos reutilizar en cualquier otro template, generalmente es bloque html que no siempre ira en la misma parte de la pagina, en un templete puede ir en el centro, en otro en el footer, en otro a la izquierda... pero como se repite el mismo bloque de código es mejor reutilizar código usando un includ
 
 - Dentro de la carpeta includes estarán bloques HTML de todo nuestro sistema de templates, los cuales podremos reutilizar 
+
+- Para la navegacion entre paginas es recomendable usar los name y no el link directo

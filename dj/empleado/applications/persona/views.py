@@ -6,7 +6,7 @@ from django.views.generic import ListView, DetailView, CreateView, TemplateView,
 #models
 from .models import Empleado
 #1
-class   ListAllEmpleados(ListView): #Toda vista generica o todo vista basada en clases requiere de un template html
+class ListAllEmpleados(ListView): #Toda vista generica o todo vista basada en clases requiere de un template html
     template_name = 'persona/list_all.html'
     model = Empleado
     #para hacer paginacion en Django se hace lo siguiente
