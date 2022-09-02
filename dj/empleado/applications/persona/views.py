@@ -8,11 +8,20 @@ from .models import Empleado
 #1
 class ListAllEmpleados(ListView): #Toda vista generica o todo vista basada en clases requiere de un template html
     template_name = 'persona/list_all.html'
-    model = Empleado
+    # model = Empleado Si se sobreescribe el metodo getQuerySet ya no es necesario el model
     #para hacer paginacion en Django se hace lo siguiente
-    paginate_by = 4 
+    paginate_by = 5
     context_object_name= 'lista' 
     ordering = 'first_name'
+    def get_queryset(self):
+        palabra_clave = self.request.GET.get("kword", '')
+        # si full name fuera jorge pozo y la palabra que viene seria Jo lo que hace icontains es buscar la J dentro de jorge 
+        # Entonces si no se ingresa nada pues me lista todo ya que todos los empleados en el full name llevan un espacio
+        lista = Empleado.objects.filter(
+            full_name__icontains=palabra_clave #
+        )
+        print('lista resultado: ',lista)
+        return lista
 
 #2
 class ListByAreaEmpleado(ListView): 

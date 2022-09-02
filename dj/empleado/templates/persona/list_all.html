@@ -8,14 +8,14 @@
 <div class="grid-container">
   <div class="grid-x">
     <h1 class="cell">Lista de  Empleados</h1>
-    <div class="cell grid-x grid-margin-x">
+    <form class="cell grid-x grid-margin-x" method="GET">{% csrf_token %}
       <div class="cell large-7">
-        <input type="text" name="" placeholder="Buscar Empleado" id="">
+        <input type="text" name="kword" placeholder="Buscar Empleado" id="kword">
       </div>
       <div class="cell large-2">
-        <button class="submit success button">Buscar</button>
+        <button type ='submit'  class="submit success button">Buscar</button>
       </div>
-    </div>
+    </form>
     <div class="cell">
       <table>
         <thead>
@@ -34,7 +34,7 @@
           <td>{{e.first_name}}</td>
           <td>{{e.last_name}}</td>
           <td>{{e.departamento}}</td>
-          <td><a class="button warning" href="#">Ver</a></td>
+          <td><a class="button warning" href="{% url 'persona_app:DetalleEmpleado' e.id %}">Ver</a></td>
           </tr>
           {% endfor %}
         </tbody>

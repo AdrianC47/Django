@@ -12,7 +12,11 @@ urlpatterns = [
     path('listar-by-job/<job>/', views.ListByJob.as_view(), name='listEmJob'), #con el <> emvio parametros 
     path('buscar-empleado/', views.ListEmpleadosByKword.as_view(), name='listEmKeyword'), #con el <> emvio parametros 
     path('lista-habilidades-empleado/', views.ListHabilidadesEmpleado.as_view(), name='listHab'), #con el <> emvio parametros 
-    path('ver-empleado/<pk>/', views.EmpleadoDetailView.as_view(), name='DetalleEmpleado'),
+    path(
+        'ver-empleado/<pk>/', 
+        views.EmpleadoDetailView.as_view(),
+        name='DetalleEmpleado'
+        ),
     path('add-empleado/', views.EmpleadoCreateView.as_view(), name='AddEmpleado'),  
     path(
         'success/',
