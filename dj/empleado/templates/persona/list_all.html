@@ -1,12 +1,56 @@
-<h1>Lista de Todos los Empleados</h1>
-<ul>
-  {% for e in lista %}
-  <li>{{e}}</li>
-  
-  {% endfor %}
- 
-</ul>
-<section class="paginacion">
+{% extends 'base.html'%} <!--Siempre debe ir primero el extends luego el load include block etc-->
+{% block title %} Página de Inicio Sistema Empleados {% endblock title %}
+{% block content%}
+{% include  'includes/header.html' %}
+<!--Importante !!! para que todo el codigo adicional se muestre en la pagina se  lo debe de poner dentro de un bloque que quiera redefinir -->
+
+
+<div class="grid-container">
+  <div class="grid-x">
+    <h1 class="cell">Lista de  Empleados</h1>
+    <div class="cell grid-x grid-margin-x">
+      <div class="cell large-7">
+        <input type="text" name="" placeholder="Buscar Empleado" id="">
+      </div>
+      <div class="cell large-2">
+        <button class="submit success button">Buscar</button>
+      </div>
+    </div>
+    <div class="cell">
+      <table>
+        <thead>
+          <tr>
+            <th width="100">ID</th>
+            <th width="100">NOMBRES</th>
+            <th width="100">APELLIDOS</th>
+            <th width="100">DEPARTAMENTOS</th>
+            <th width="100">ACCION</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for e in lista %}
+          <tr>
+          <td>{{e.id}}</td>
+          <td>{{e.first_name}}</td>
+          <td>{{e.last_name}}</td>
+          <td>{{e.departamento}}</td>
+          <td><a class="button warning" href="#">Ver</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+  <!-- <h1>Lista Todos los Empleados</h1>
+  <ul>
+    {% for e in lista %}
+    <li>{{e}}</li>
+    
+    {% endfor %}
+   
+  </ul>
+  <section class="paginacion">
     <ul>
         <button><a href="http://127.0.0.1:8000/listar-todo-empleados/?page=1" class="active">1</a></button>
         <button><a href="http://127.0.0.1:8000/listar-todo-empleados/?page=2">2</a></button>
@@ -14,4 +58,9 @@
         <button><a href="http://127.0.0.1:8000/listar-todo-empleados/?page=4">4</a></button>
         <button><a href="http://127.0.0.1:8000/listar-todo-empleados/?page=5">5</a></button>
     </ul>
-</section>
+</section> -->
+
+
+
+
+{% endblock content%}

@@ -13,4 +13,5 @@ class Departamento(models.Model):# se especifica que este sera un modelo de los 
         unique_together =('name', 'shor_name')#aqui indico que combinados dos o mas  atributos no se repita
     #Por defecto los campos son obligatorios
     def __str__(self):
-        return str(self.id) + '-' + self.name + '-' +self.shor_name+'-'+str(self.anulate)
+        return str(self.id) + '-' + self.shor_name  
+        # return str(self.id) + '-' + self.name + '-' +self.shor_name+'-'+str(self.anulate)
