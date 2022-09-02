@@ -35,4 +35,16 @@ que nos permite interactuar con nuestra BD
 - Los proyectos del curso se trabajaran con el  framework Foundation para dar estilo
 - Los archivos estáticos ayudan a que nuestro HTML se pinte mejor y son archivos estaticos ya que no cambian, es decir que su valor que se ha
 traído inicialmente cuando ha hecho la consulta a nuestro navegador a nuestro servidor, ese valor sera el mismo durante todo el ciclo de vida de nuestro proyecto
+
+- Diferencia entre Include y Extends
+* Extends  se podría considerar herencia, mientras que include es solamente una herramienta para organizar mejor nuestro html y no repetir código que en muchos casos es repetitivo.
+
+* Extends en cambio es el envoltorio del html como si fuera un marco que contendrá uno o varios bloques html dentro, es decir extends hará que el código que tenga envuelva a lo que contendra.  (extends contiene bloques html)
+
+* Include se agrega dentro de bloques, podríamos decir que a include lo contienen los bloques html.
+
+* extends involucra que queremos trabajar bajo una maqueta o bajo una estructura de la cual estamos extendiendo, imagina que creamos una estructura base una vez analizado nuestro proyecto, y en todos los template que deban trabajar bajo esa estructura base usamos extends.
+
+* Include son bloques HTML que podemos reutilizar en cualquier otro template, generalmente es bloque html que no siempre ira en la misma parte de la pagina, en un templete puede ir en el centro, en otro en el footer, en otro a la izquierda... pero como se repite el mismo bloque de código es mejor reutilizar código usando un includ
+
 - Dentro de la carpeta includes estarán bloques HTML de todo nuestro sistema de templates, los cuales podremos reutilizar 
