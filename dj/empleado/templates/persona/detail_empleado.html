@@ -1,15 +1,45 @@
-<h1>Detalle de un empleado {{ titulo }}</h1>
-{{object}} <br><!--Con esta palabra reservada recupero todo mi registro/objeto de mi DetailView-->
-{{empleado}}          <!--Tambien se puede hacer de esta forma, llamando al modelo pero todo en minuscula-->  
+{% extends 'base.html'%} <!--Siempre debe ir primero el extends luego el load include block etc-->
+{% block title %} Página de Inicio Sistema Empleados {% endblock title %}
+{% block content%}
+{% include  'includes/header.html' %}
+ 
 
-<h3>Todos los Datos:</h3>
-<p>{{ empleado.first_name }}</p>
-<p>{{ empleado.last_name }}</p>
-<p>{{ empleado.departamento }}</p>
-<h3 style="color: blue">Habilidades del Empleado</h3>
-<ul>
-    {% for h in empleado.habilidades.all %}
-    <li>{{ h.habilidad }}</li>
-    {% endfor %}
-</ul>
-  
+<div class="grid-container">
+    <div class="grid-x">
+        <h1>Detalle del Empleado</h1>
+    </div>
+    <div class="cell">
+        <table>
+            <thead>
+                <th width="100">Nombre</th>
+                <th width="100">Apellido</th>
+                <th width="100">Job</th>
+                <th width="100">Departamento</th>
+                <th width="100">Habilidades</th>
+            </thead>
+            <tbody>
+                <td>{{ empleado.first_name }}</td>
+                <td>{{ empleado.last_name }}</td>
+                <td>{{ empleado.job }}</td>
+                <td>{{ empleado.departamento }}</td>
+                <td><button class="button" data-open="exampleModal1">Ver Habilidades</button></td>
+ 
+            </tbody>
+        </table>
+
+    </div>
+</div>
+ 
+<!-- {{object}} Con esta palabra reservada recupero todo mi registro/objeto de mi DetailView -->
+<!-- {{empleado}}          Tambien se puede hacer de esta forma, llamando al modelo pero todo en minuscula   -->
+
+<div class="reveal" id="exampleModal1" data-reveal>
+    <h3 style="color: blue">Habilidades del Empleado</h3>
+    <ul class="accordion" >
+        {% for h in empleado.habilidades.all %}
+        <li class="accordion-item is-active">{{ h.habilidad }}</li>
+        {% endfor %}
+    </ul>
+  </div>
+
+{% endblock content%}
