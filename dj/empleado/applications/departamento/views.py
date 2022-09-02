@@ -1,9 +1,20 @@
 from django.shortcuts import render
 from django.views.generic.edit import FormView #el formView es una vista generica un nivel mas abajo que las otras
 from .forms import NewDepartamentoForm
+from django.views.generic import ListView
 from applications.persona.models import Empleado
 from .models import Departamento
 # Create your views here.
+
+
+
+
+class DepartamentoListView(ListView):
+    model = Departamento
+    template_name = "departamento/lista.html"
+    context_object_name= 'departamentos'
+
+
 
 # Aquí lo que voy a realizar es realizar un registro de dos modelos en una sola vista utilizando el FormView
 # y un formulario que no depende del modelo 
