@@ -40,6 +40,33 @@
         </tbody>
       </table>
     </div>
+    <div class="cell">
+      
+      {% if is_paginated %} <!--Pregunto si hay paginacion-->
+      <nav aria-label="Pagination">
+        <ul class="pagination text-center">
+          <!--Cuando en el view se usa  el paginate_by internamente se crea un objeto paginador(page_obj) entonces trabajaremos sobre el mismo-->
+          {% if page_obj.has_previous %} <!--Pregunto si tiene elementos anteriores-->
+          <li class="pagination-previous ">
+            <a href="?page={{page_obj.previous_page_number}}">Atrás</a></li>
+          {% endif %}
+            
+            {% for pagina  in paginator.page_range  %} <!--Itero en el objeto que tiene mi numero de paginas que tiene todo nuestro objeto de paginacion-->
+            <li><a href="?page={{pagina}}" aria-label="Page 2">{{pagina}}</a></li>
+            {% endfor %}
+              
+
+          <!-- <li class="current"><span class="show-for-sr">You're on page</span> 1</li> -->
+       
+          <li class="pagination-next">
+            <a href="?page={{page_obj.next}}" aria-label="Next page">Siguiente</a>
+          </li>
+        </ul>
+      </nav>
+      {% endif %}
+        
+
+    </div>
   </div>
 </div>
   <!-- <h1>Lista Todos los Empleados</h1>
