@@ -27,6 +27,7 @@ class ListAllEmpleados(ListView): #Toda vista generica o todo vista basada en cl
 class ListByAreaEmpleado(ListView): 
     """Lista Empleados de un Area """
     template_name = 'persona/list_by_area.html'
+    context_object_name='empleados'
     # queryset =Empleado.objects.filter( forma menos recomendada de obtener datos mediante consultas
     #     departamento__shor_name='Informática'
     # )
