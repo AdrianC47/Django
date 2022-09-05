@@ -9,7 +9,7 @@
 
 <div class="grid-container">
     <div class="grid-x grid-margin-x align-center">
-        <div class="cell large-4 card" style="width: 300px;">
+        <div class="cell large-4 card" style="width: 300px; margin-top: 10px ;">
             <div class="card-divider">
                 {{empleado.get_job_display}}
             </div>
@@ -25,12 +25,27 @@
                 <p>{{empleado.first_name}}</p>
                 <p>{{empleado.last_name}}</p>
                 <p>{{empleado.departamento.shor_name}}</p>
-                <p>{{empleado.habilidades}}</p>
+                <button class="button" data-open="exampleModal1">Ver Habilidades</button></td>
+                <!-- <p><span class="label">Habilidades:</span></p>
+                <ul class="vertical menu">
+                    {% for h in empleado.habilidades.all  %}
+                        <li>{{ h.habilidad }}</li>
+                    {% endfor %}
+                        
+                </ul> -->
+           
             </div>
         </div>
     </div>
 </div>
-
+<div class="reveal" id="exampleModal1" data-reveal>
+    <h3 style="color: blue">Habilidades del Empleado</h3>
+    <ul class="accordion" >
+        {% for h in empleado.habilidades.all %}
+        <li class="accordion-item is-active">{{ h.habilidad }}</li>
+        {% endfor %}
+    </ul>
+  </div>
 
 <!-- 
 
@@ -71,13 +86,6 @@
 <!-- {{object}} Con esta palabra reservada recupero todo mi registro/objeto de mi DetailView -->
 <!-- {{empleado}}          Tambien se puede hacer de esta forma, llamando al modelo pero todo en minuscula   -->
 
-<!-- <div class="reveal" id="exampleModal1" data-reveal>
-    <h3 style="color: blue">Habilidades del Empleado</h3>
-    <ul class="accordion" >
-        {% for h in empleado.habilidades.all %}
-        <li class="accordion-item is-active">{{ h.habilidad }}</li>
-        {% endfor %}
-    </ul>
-  </div> -->
+
 
 {% endblock content%}
