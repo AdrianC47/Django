@@ -1,0 +1,75 @@
+{% extends 'base.html'%} <!--Siempre debe ir primero el extends luego el load include block etc-->
+{% block title %} Lista de los Empleados {% endblock title %}
+{% block content%}
+{% include  'includes/header.html' %}
+<!--Importante !!! para que todo el codigo adicional se muestre en la pagina se  lo debe de poner dentro de un bloque que quiera redefinir -->
+
+
+<div class="grid-container">
+  <div class="grid-x">
+    <h1 class="cell">Lista de  Empleados</h1>
+ 
+    <div class="cell">
+      <table>
+        <thead>
+          <tr>
+            <th width="100">ID</th>
+            <th width="100">NOMBRES</th>
+            <th width="100">APELLIDOS</th>
+            <th width="100">DEPARTAMENTOS</th>
+            <th width="100">ACCION</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for e in empleados %}
+          <tr>
+          <td>{{e.id}}</td>
+          <td>{{e.first_name}}</td>
+          <td>{{e.last_name}}</td>
+          <td>{{e.departamento}}</td>
+          <td><a class="button success" href="{% url 'persona_app:modificar_empleado' e.id %}">Editar</a></td>
+          <td><a class="button alert" href="{% url 'persona_app:eliminar_empleado' e.id %}" >Eliminar</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="cell">
+      
+      {% if is_paginated %} <!--Pregunto si hay paginacion-->
+      <nav aria-label="Pagination">
+        <ul class="pagination text-center">
+          <!--Cuando en el view se usa  el paginate_by internamente se crea un objeto paginador(page_obj) entonces trabajaremos sobre el mismo-->
+          {% if page_obj.has_previous %} <!--Pregunto si tiene elementos anteriores-->
+          <li class="pagination-previous ">
+            <a href="?page={{page_obj.previous_page_number}}">Atrás</a></li>
+          {% endif %}
+            
+          {% for pagina  in paginator.page_range  %} <!--Itero en el objeto que tiene mi numero de paginas que tiene todo nuestro objeto de paginacion-->
+          
+          {% if pagina  == page_obj.number  %} <!-- Pregunto si la pagina en la que estoy es igual al numero del objeto paginador-->
+          <li class="current"><span class="show-for-sr">You're on page</span>{{pagina}}</li> <!--Si es igual pues se mostrara un li resaltado-->
+          {% else %}
+          <li><a href="?page={{pagina}}" aria-label="Page 2">{{pagina}}</a></li><!--Y si no pues mostrara un li sin resaltar -->
+          {% endif %}
+          {% endfor %}
+
+
+          {% if page_obj.has_next %} 
+          <li class="pagination-next">
+            <a href="?page={{page_obj.next}}" aria-label="Next page">Siguiente</a>
+          </li>
+          {% endif %} 
+        </ul>
+      </nav>
+      {% endif %}
+        
+
+    </div>
+  </div>
+</div>
+ 
+
+
+
+{% endblock content%}

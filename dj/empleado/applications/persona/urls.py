@@ -8,9 +8,19 @@ urlpatterns = [
          views.ListAllEmpleados.as_view(),
          name='empleados_all'
          ),
-    path('listar-by-area/<shorname>/',
-     views.ListByAreaEmpleado.as_view(),
-      name='listEmArea'), #con el <> emvio parametros 
+
+    path(
+        'listar-by-area/<shorname>/',
+        views.ListByAreaEmpleado.as_view(),
+        name='listEmArea'
+        ), #con el <> emvio parametros.
+
+    path(
+        'listar-empleados-admin/',
+        views.ListaEmpleadosAdmin.as_view(),
+        name='empleados_admin'
+        ),      
+
     path('listar-by-job/<job>/', views.ListByJob.as_view(), name='listEmJob'), #con el <> emvio parametros 
     path('buscar-empleado/', views.ListEmpleadosByKword.as_view(), name='listEmKeyword'), #con el <> emvio parametros 
     path('lista-habilidades-empleado/', views.ListHabilidadesEmpleado.as_view(), name='listHab'), #con el <> emvio parametros 

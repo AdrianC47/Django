@@ -23,6 +23,17 @@ class ListAllEmpleados(ListView): #Toda vista generica o todo vista basada en cl
         print('lista resultado: ',lista)
         return lista
 
+
+class ListaEmpleadosAdmin(ListView): #Toda vista generica o todo vista basada en clases requiere de un template html
+    template_name = 'persona/lista_empleados.html'
+    # model = Empleado Si se sobreescribe el metodo getQuerySet ya no es necesario el model
+    #para hacer paginacion en Django se hace lo siguiente
+    paginate_by = 10
+    context_object_name= 'empleados' 
+    ordering = 'first_name'
+    model=Empleado
+
+
 #2
 class ListByAreaEmpleado(ListView): 
     """Lista Empleados de un Area """
