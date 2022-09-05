@@ -127,7 +127,7 @@ class SuccessView(TemplateView):
 class EmpleadoCreateView(CreateView):#esta vista sirve para registrar algo en un modelo de BD, es una vista generica
     model = Empleado          #para crear registros en el modelo de base de datos
     template_name = "persona/add.html"
-    fields = ['first_name', 'last_name', 'job','departamento','habilidades'] #Se requiere del fields para poder indicar qué
+    fields = ['first_name', 'last_name', 'job','departamento','habilidades', 'avatar'] #Se requiere del fields para poder indicar qué
                                # atributos del modelo queremos registrar por defecto, o que se pinten en pantalla
     #fields =('__all__') # <=== de esta manera selecciono todos los atributos
     success_url=reverse_lazy('persona_app:empleados_admin') #Tambien se debe indicar la url de la pag a donde se redireccionara una vez hecho un submit del formulario

@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from applications.home.views import IndexView #llamo a la clase que esta dentro de la  vista de mi aplicacion home
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('applications.home.urls')), # con el include indico que incluya el otro urls
     path('', include('applications.persona.urls')), # con el include indico que incluya el otro urls
     path('', include('applications.departamento.urls')) # con el include indico que incluya el otro urls
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #Esto es para que vaya generando los links en base a las imagenes que se tenga 

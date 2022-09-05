@@ -6,7 +6,8 @@
     <div class="grid-x">
         <h1 class="cell">Registrar Empleado</h1>
         <!--El CreateView  lo que hace es crearnos una variable(se llama form) para poder acceder a lo que se puso en el field-->
-        <form class="cell grid-x grid-margin-x" method="POST"> {% csrf_token %} 
+        <!--Añadimos el multipart para que el formulario acepte archivos que no solo sean conocidos o de un formulario conocido-->
+        <form class="cell grid-x grid-margin-x" method="POST" enctype="multipart/form-data"> {% csrf_token %} 
         <div class="medium-6 cell">
             <label>Nombres: </label>
             {{form.first_name}}
@@ -26,6 +27,10 @@
         <div class="medium-12 cell">
             <label>Habilidades: </label>
             {{form.habilidades}}
+        </div>
+        <div class="medium-12 cell">
+            <label>Imagen: </label>
+            {{form.avatar}}
         </div>
         <div class="medium-12 cell">
             <button type="submit" class="button success" >Guardar</button>
