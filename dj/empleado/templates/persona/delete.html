@@ -1,5 +1,11 @@
+{% extends 'base.html'%} <!--Siempre debe ir primero el extends luego el load include block etc-->
+{% block title %} Eliminar Empleado {% endblock title %}
+{% block content%}
+{% include  'includes/header.html' %}
 <h1>Eliminar</h1>
 <form method="POST">{% csrf_token %} 
     <p>Confirme que desea eliminar</p>
     <button type="submit">Confirmar</button>
 </form>
+
+{% endblock content%}

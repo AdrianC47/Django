@@ -150,7 +150,7 @@ class EmpleadoUpdateView(UpdateView):
     template_name = "persona/update.html"
 
     fields=  ['first_name', 'last_name', 'job','departamento','habilidades']
-    success_url=reverse_lazy('persona_app:correcto')
+    success_url=reverse_lazy('persona_app:empleados_admin')
 
     # El orden comun  es primero el post y luego el form_valid
     # En el request vienen todas las solicitudes que se hagan por el protocolo HTTP hacia nuestro servidor
