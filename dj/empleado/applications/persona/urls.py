@@ -29,7 +29,13 @@ urlpatterns = [
         views.EmpleadoDetailView.as_view(),
         name='DetalleEmpleado'
         ),
-    path('add-empleado/', views.EmpleadoCreateView.as_view(), name='AddEmpleado'),  
+    
+    path(
+        'add-empleado/',
+        views.EmpleadoCreateView.as_view(), 
+        name='AddEmpleado'
+    ),  
+    
     path(
         'success/',
         views.SuccessView.as_view(),

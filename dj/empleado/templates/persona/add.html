@@ -1,6 +1,39 @@
-<h1>Registrar Persona</h1>
-<!--El CreateView  lo que hace es crearnos una variable(se llama form) para poder acceder a lo que se puso en el field-->
-<form method="POST"> {% csrf_token %} 
-{{ form.as_p}}
-<button type="submit">Agregar</button>
-</form>
+{% extends 'base.html'%} <!--Siempre debe ir primero el extends luego el load include block etc-->
+{% block title %} Añadir Nuevo Empleado {% endblock title %}
+{% block content%}
+{% include  'includes/header.html' %}
+<div class="grid-container">
+    <div class="grid-x">
+        <h1 class="cell">Registrar Empleado</h1>
+        <!--El CreateView  lo que hace es crearnos una variable(se llama form) para poder acceder a lo que se puso en el field-->
+        <form class="cell grid-x grid-margin-x" method="POST"> {% csrf_token %} 
+        <div class="medium-6 cell">
+            <label>Nombres: </label>
+            {{form.first_name}}
+        </div>
+        <div class="medium-6 cell">
+            <label>Apellidos: </label>
+            {{form.last_name}}
+        </div>
+        <div class="medium-6 cell">
+            <label>Trabajo: </label>
+            {{form.job}}
+        </div>
+        <div class="medium-12 cell">
+            <label>Departamento: </label>
+            {{form.departamento}}
+        </div>
+        <div class="medium-12 cell">
+            <label>Habilidades: </label>
+            {{form.habilidades}}
+        </div>
+        <div class="medium-12 cell">
+            <button type="submit" class="button success" >Guardar</button>
+        </div>
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock content%}
