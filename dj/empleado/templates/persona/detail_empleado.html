@@ -1,12 +1,47 @@
 {% extends 'base.html'%} <!--Siempre debe ir primero el extends luego el load include block etc-->
-{% block title %} Página de Inicio Sistema Empleados {% endblock title %}
+{% load static %}
+{% block title %} {{ empleado.full_name }} {% endblock title %}
 {% block content%}
 {% include  'includes/header.html' %}
  
 
+
+
 <div class="grid-container">
+    <div class="grid-x grid-margin-x align-center">
+        <div class="cell large-4 card" style="width: 300px;">
+            <div class="card-divider">
+                {{empleado.get_job_display}}
+            </div>
+            
+            {% if empleado.avatar %}
+            <img src="{{ empleado.avatar.url }}" alt="Empleado">
+            {% else %}
+            <img src="{% static 'img/emp.png' %}" alt="Empleado">                            
+            {% endif %}
+                
+            <div class="card-section">
+                <h4>{{empleado.full_name}}</h4>
+                <p>{{empleado.first_name}}</p>
+                <p>{{empleado.last_name}}</p>
+                <p>{{empleado.departamento.shor_name}}</p>
+                <p>{{empleado.habilidades}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 
+
+
+    ===============================================================
+    Lo de abajo es la tarea realizada
+-->
+
+<!-- <div class="grid-container">
     <div class="grid-x">
-        <h1>Detalle del Empleado</h1>
+        <h1>{{empleado.full_name}}</h1>
     </div>
     <div class="cell">
         <table>
@@ -24,25 +59,25 @@
                 <td>{{ empleado.last_name }}</td>
                 <td>{{ empleado.job }}</td>
                 <td>{{ empleado.departamento }}</td>
-                <td><img alt="Imagen del Empleado" src="{{ empleado.avatar.url }}"  width="250" height="250"></td>
+                <td><img alt="Imagen del Empleado"  empleado.avatar.url   width="250" height="250"></td>
                 <td><button class="button" data-open="exampleModal1">Ver Habilidades</button></td>
  
             </tbody>
         </table>
 
     </div>
-</div>
+</div> -->
  
 <!-- {{object}} Con esta palabra reservada recupero todo mi registro/objeto de mi DetailView -->
 <!-- {{empleado}}          Tambien se puede hacer de esta forma, llamando al modelo pero todo en minuscula   -->
 
-<div class="reveal" id="exampleModal1" data-reveal>
+<!-- <div class="reveal" id="exampleModal1" data-reveal>
     <h3 style="color: blue">Habilidades del Empleado</h3>
     <ul class="accordion" >
         {% for h in empleado.habilidades.all %}
         <li class="accordion-item is-active">{{ h.habilidad }}</li>
         {% endfor %}
     </ul>
-  </div>
+  </div> -->
 
 {% endblock content%}
