@@ -15,13 +15,16 @@
                 <th width="100">Apellido</th>
                 <th width="100">Job</th>
                 <th width="100">Departamento</th>
+                <th width="100">Avatar</th>
                 <th width="100">Habilidades</th>
+              
             </thead>
             <tbody>
                 <td>{{ empleado.first_name }}</td>
                 <td>{{ empleado.last_name }}</td>
                 <td>{{ empleado.job }}</td>
                 <td>{{ empleado.departamento }}</td>
+                <td><img alt="Imagen del Empleado" src="{{ empleado.avatar.url }}"  width="250" height="250"></td>
                 <td><button class="button" data-open="exampleModal1">Ver Habilidades</button></td>
  
             </tbody>
