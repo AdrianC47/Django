@@ -15,10 +15,15 @@ class Lector(models.Model):
     nacionalidad = models.CharField( 
         max_length=20
     )
+    
     edad = models.PositiveIntegerField(default=0)
 
+    class Meta:
+        verbose_name = "Mi Lector"
+        verbose_name_plural = "Lectores"
+
     def __str__(self):
-        return self.nombre + '-' + self.apellidos + '-' + self.nacionalidad + '-' + self.edad
+        return self.nombre + '-' + self.apellidos + '-' + self.nacionalidad + '-' + str(self.edad)
 
 class Prestamo(models.Model):
     lector = models.ForeignKey(
@@ -36,5 +41,8 @@ class Prestamo(models.Model):
     )
     devuelto = models.BooleanField()
 
+    class Meta:
+        verbose_name = "Mi Prestamo"
+        verbose_name_plural = "Prestamos"
     def __str__(self):
-        return self.lector.nombre + '-' + self.libro.titulo + '-' + self.fecha_prestamo + '-' + self.fecha_devolucion + '-' +self.devuelto
+        return self.lector.nombre + '-' + self.libro.titulo + '-' + str(self.fecha_prestamo) + '-' + str(self.fecha_devolucion) + '-' +str(self.devuelto)

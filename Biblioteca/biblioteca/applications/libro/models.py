@@ -7,9 +7,12 @@ from applications.autor.models import Autor
 
 class Categoria (models.Model):
     nombre = models.CharField(max_length=30)
+    class Meta:
+          verbose_name = 'Mi Categoria'
+          verbose_name_plural = "Categorias"
 
-def __str__(self):
-    return self.nombre
+    def __str__(self):
+        return self.nombre
 
 class Libro (models.Model):
     categoria = models.ForeignKey(
@@ -22,7 +25,7 @@ class Libro (models.Model):
     )
     fecha = models.DateField('Fecha de lanzamiento')
     portada = models.ImageField(upload_to='portada')
-    visitas = models.PositiveIntegerField
+    visitas = models.PositiveIntegerField()
 
     def __str__(self):
-        return self.categoria.nombre + '-' +self.autores.nombre+ '-'+ self.titulo+ '-' + self.fecha + '-' + self.portada + '-' + self.visitas 
+        return self.categoria.nombre + '-'+ self.titulo+ '-' + str(self.fecha)  + '-' + str(self.visitas) 
