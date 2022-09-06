@@ -1,5 +1,6 @@
 from distutils.command.upload import upload
 from django.db import models
+from .managers import LibroManager
 # from local apps
 from applications.autor.models import Autor
 
@@ -26,6 +27,9 @@ class Libro (models.Model):
     fecha = models.DateField('Fecha de lanzamiento')
     portada = models.ImageField(upload_to='portada')
     visitas = models.PositiveIntegerField()
+
+     # Aquí conectamos el manager con el modelo
+    objects= LibroManager()
 
     def __str__(self):
         return self.categoria.nombre + '-'+ self.titulo+ '-' + str(self.fecha)  + '-' + str(self.visitas) 
