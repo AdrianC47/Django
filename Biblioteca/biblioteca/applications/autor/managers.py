@@ -36,3 +36,12 @@ class AutorManager (models.Manager):
         # ) 
 
         return resultado
+
+    def buscar_autor4(self, kword):
+
+        resultado=self.filter(
+            edad__gt= 60, # para los and solo se pone coma y la siguiente condicion
+            edad__lt=85 #gt es > y lt es <
+        ).order_by("apellidos",'nombre', 'id')
+
+        return resultado 
