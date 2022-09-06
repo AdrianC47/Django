@@ -5,6 +5,10 @@ from django.db import models
 class AutorManager (models.Manager):
     """Managers para el modelo Autor"""
 
-    def listar_autores(self):
+    def buscar_autor(self, kword):
 
-        return self.all()
+        resultado=self.filter(
+            nombre__icontains= kword # esto busca cada caracter en la BD si es similar, es decir si contiene una a , t ,etc
+        )
+
+        return resultado
