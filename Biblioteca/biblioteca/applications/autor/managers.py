@@ -22,3 +22,17 @@ class AutorManager (models.Manager):
         )
 
         return resultado
+
+    def buscar_autor3(self, kword):
+
+        resultado=self.filter(
+            nombre__icontains= kword  
+        ).exclude(#con esto digo que me excluya los registros con la edad de 65
+            Q(edad__icontains= 65) | Q(edad__icontains = 71)
+        ) 
+
+        # ).filter(#de esta forma tambien puedo hacer filtros dentro de filtros
+        #     Q(edad__icontains= 65) | Q(edad__icontains = 71)
+        # ) 
+
+        return resultado
