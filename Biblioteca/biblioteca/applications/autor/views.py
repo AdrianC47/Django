@@ -14,6 +14,6 @@ class ListAutores(ListView):
 
     def get_queryset(self):
 
-        return Autor.objects.all()
+        return Autor.objects.listar_autores()
 
 

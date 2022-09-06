@@ -2,22 +2,27 @@ from tabnanny import verbose
 from django.db import models
 
 # Create your models here.
+# Managers
+from .managers import AutorManager 
 
 class Autor(models.Model):
-    nombre = models.CharField(
+     nombre = models.CharField(
          max_length=50
-    )
-    apellidos = models.CharField(
+     )
+     apellidos = models.CharField(
          max_length=50
-    )
-    nacionalidad = models.CharField(
+     )
+     nacionalidad = models.CharField(
          max_length=30
-    )
-    edad = models.PositiveIntegerField()
+     )
+     edad = models.PositiveIntegerField()
 
-    class Meta:
+     # Aquí conectamos el manager con el modelo
+     objects= AutorManager()
+     
+     class Meta:
           verbose_name = 'Mi Autor'
           verbose_name_plural = "Autores"
 
-    def __str__(self):
+     def __str__(self):
         return self.nombre+ '-' + self.apellidos + '-' + self.nacionalidad + '-' + str(self.edad)
