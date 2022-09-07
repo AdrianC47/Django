@@ -12,7 +12,7 @@ class Categoria (models.Model):
     objects= CategoriaManager()
     class Meta:
           verbose_name = 'Mi Categoria'
-          verbose_name_plural = "Categorias"
+          verbose_name_plural = "Categorias" 
 
     def __str__(self):
         return str(self.id) + '-' + self.nombre
@@ -21,7 +21,7 @@ class Libro (models.Model):
     categoria = models.ForeignKey(
         Categoria,
         on_delete=models.CASCADE,
-        related_name='categoria_libro' #cuando alguien quiera llegar al modelo categoria pero desde la relacion que tengo entre libro y categoria quiero que utlice este atributo
+        related_name='categoria_libro' #cuando alguien quiera llegar al modelo Libro pero desde la relacion que tengo con  categoria quiero que utlice este atributo related_name
     )
     autores = models.ManyToManyField(Autor)
     titulo = models.CharField(
@@ -35,4 +35,4 @@ class Libro (models.Model):
     objects= LibroManager()
 
     def __str__(self):
-        return self.categoria.nombre + '-'+ self.titulo+ '-' + str(self.fecha)  + '-' + str(self.visitas) 
+        return str(self.id) + '-' + self.categoria.nombre + '-'+ self.titulo+ '-' + str(self.fecha)  + '-' + str(self.visitas) 

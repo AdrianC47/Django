@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 # modelos Local
 
@@ -34,3 +34,7 @@ class ListLibros2(ListView):
 
 
 
+
+class LibroDetailView(DetailView):
+    model = Libro
+    template_name = "libro/detalle.html"

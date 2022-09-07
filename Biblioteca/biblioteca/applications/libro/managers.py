@@ -1,4 +1,5 @@
 import datetime
+from enum import auto
 from statistics import mode
 from django.db import models
 
@@ -34,10 +35,16 @@ class LibroManager(models.Manager):
             categoria__id = categoria
         ).order_by('titulo')
 
+    def add_autor_libro(self,libro_id, autor):
+
+        libro = self.get(id=libro_id)#obtengo el libro con la pk del path
+        libro.autores.add(autor)
+        return libro
+
 class CategoriaManager(models.Manager):
     """Managers para el modelo Categoria"""
 
     def categoria_por_autor(self, autor):
-        return self.filter(
-            categoria_libro__autores__id = autor
+        return self.filter( 
+            categoria_libro__autores__id = autor#aqui primero se pone el atributo del related name en el modelo Libro
         ).distinct()# este distinct lo que hace es que me muestre una sola vez cada resultado obtenido
