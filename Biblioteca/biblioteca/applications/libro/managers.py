@@ -2,7 +2,7 @@ import datetime
 from enum import auto
 from statistics import mode
 from django.db import models
-
+from django.db.models import Q, Count 
 class LibroManager(models.Manager):
     """Managers para el modelo Libro"""
 
@@ -48,3 +48,16 @@ class CategoriaManager(models.Manager):
         return self.filter( 
             categoria_libro__autores__id = autor#aqui primero se pone el atributo del related name en el modelo Libro
         ).distinct()# este distinct lo que hace es que me muestre una sola vez cada resultado obtenido
+
+
+    def listar_categoria_libros(self):
+        resultado =  self.annotate(
+        #Declaro una variable y dentro de esta variable va a estar almacenada la funcion/operacion que  yo quiero realizar
+            num_libros=Count('categoria_libro')
+        )
+
+    #SOLO CON EL FIN DE PROBAR SE HACE ESTE FOR
+        for r in resultado:
+            print("*******************")
+            print(r, r.num_libros)
+        return resultado
