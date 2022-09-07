@@ -15,12 +15,13 @@ class Categoria (models.Model):
           verbose_name_plural = "Categorias" 
 
     def __str__(self):
-        return str(self.id) + '-' + self.nombre
+        return str(self.id) + ' -' + self.nombre
 
 class Libro (models.Model):
     categoria = models.ForeignKey(
         Categoria,
         on_delete=models.CASCADE,
+        #El related name especifica el nombre de la relacion inversa
         related_name='categoria_libro' #cuando alguien quiera llegar al modelo Libro pero desde la relacion que tengo con  categoria quiero que utlice este atributo related_name
     )
     autores = models.ManyToManyField(Autor)

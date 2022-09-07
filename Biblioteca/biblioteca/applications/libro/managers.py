@@ -8,7 +8,7 @@ class LibroManager(models.Manager):
 
     def listar_libros(self, kword):
     
-        resultado=self.filter(
+        resultado=self.filter(#filtro por titulo y por la fecha
             titulo__icontains= kword,
             fecha__range = ('2000-04-21','2020-05-25')
         )
@@ -29,9 +29,10 @@ class LibroManager(models.Manager):
 
         return resultado
 
-    def listar_libros_categoria(self,categoria):
-
-        return self.filter( ##Filtra y lista todos los libros con el mismo id de la categoria 
+    def listar_libros_categoria(self,categoria):#mando un parametro
+        #SE LISTAN LOS LIBROS!!!
+        #similar a un select * from LIBROS where categoria.id = categoria
+        return self.filter( ##Filtra y lista todos los LIBROS con el mismo id(paranetro) de la categoria 
             categoria__id = categoria
         ).order_by('titulo')
 

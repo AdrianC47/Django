@@ -18,7 +18,7 @@ class ListLibros(ListView):
         #fecha 2
         f2 = self.request.GET.get("fecha2",'')
 
-        if f1 and f2:
+        if f1 and f2:#Si no se mandan fechas se valida que masquesea liste por la palabra clave
             return Libro.objects.listar_libros2(palabra_clave,f1,f2)
         else:
             return Libro.objects.listar_libros(palabra_clave)
