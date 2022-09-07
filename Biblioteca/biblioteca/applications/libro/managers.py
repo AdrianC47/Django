@@ -52,13 +52,16 @@ class CategoriaManager(models.Manager):
 
 
     def listar_categoria_libros(self):
+        # Usamos annotate cuando queremos hacer una anotación en cada objeto que nos devuelva de un queryset, 
+        # como si quisiéramos agregar una propiedad extra a cada objeto de tu queryset, pero directo desde la base de datos.
+        # En este caso es para añadir el atributo count o cantidad a categoria
         resultado =  self.annotate(
-        #Declaro una variable y dentro de esta variable va a estar almacenada la funcion/operacion que  yo quiero realizar
-            num_libros=Count('categoria_libro')
+        #En este caso el  num_libros va a ser mi atributo nuevo para mi modelo Categoria
+            num_libros=Count('categoria_libro')#Aqui se hace uso de el related_name  
         )
 
     #SOLO CON EL FIN DE PROBAR SE HACE ESTE FOR
         for r in resultado:
             print("*******************")
-            print(r, r.num_libros)
-        return resultado
+            print(r, r.num_libros) ##gracias al annotate es como si el num_libros fuese un nuevo atributo del modelo Categoria
+        return resultado #<==Esto es un QuerySet
