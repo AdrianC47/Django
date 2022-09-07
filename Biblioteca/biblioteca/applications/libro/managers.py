@@ -38,7 +38,7 @@ class LibroManager(models.Manager):
     def add_autor_libro(self,libro_id, autor):
 
         libro = self.get(id=libro_id)#obtengo el libro con la pk del path
-        libro.autores.add(autor)
+        libro.autores.add(autor)#si quiero eliminar solo va el remove a cambio del add
         return libro
 
 class CategoriaManager(models.Manager):

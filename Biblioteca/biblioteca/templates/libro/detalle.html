@@ -6,6 +6,7 @@
 
 
 <p>===============================Many to Many =========================================</p>
+<p>===============================Lista de Autores del libro  {{libro.titulo}}================================</p>
 <ul>
     
     {% for autor in libro.autores.all  %}
@@ -14,3 +15,8 @@
     {% endfor %}
         
 </ul>
+<p>===============================Agregar autores =========================================</p>
+<form  method="post">
+    <input type="text" name="" id="" placeholder="Agregar Autor">
+    <button type="submit">Guardar</button>
+</form>
