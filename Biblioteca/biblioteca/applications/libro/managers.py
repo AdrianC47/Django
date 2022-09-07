@@ -30,6 +30,14 @@ class LibroManager(models.Manager):
 
     def listar_libros_categoria(self,categoria):
 
-        return self.filter(
+        return self.filter( ##Filtra y lista todos los libros con el mismo id de la categoria 
             categoria__id = categoria
         ).order_by('titulo')
+
+class CategoriaManager(models.Manager):
+    """Managers para el modelo Categoria"""
+
+    def categoria_por_autor(self, autor):
+        return self.filter(
+            categoria_libro__autores__id = autor
+        ).distinct()# este distinct lo que hace es que me muestre una sola vez cada resultado obtenido

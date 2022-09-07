@@ -1,6 +1,6 @@
 from distutils.command.upload import upload
 from django.db import models
-from .managers import LibroManager
+from .managers import CategoriaManager, LibroManager
 # from local apps
 from applications.autor.models import Autor
 
@@ -8,6 +8,8 @@ from applications.autor.models import Autor
 
 class Categoria (models.Model):
     nombre = models.CharField(max_length=30)
+
+    objects= CategoriaManager()
     class Meta:
           verbose_name = 'Mi Categoria'
           verbose_name_plural = "Categorias"
@@ -18,7 +20,8 @@ class Categoria (models.Model):
 class Libro (models.Model):
     categoria = models.ForeignKey(
         Categoria,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='categoria_libro' #cuando alguien quiera llegar al modelo categoria pero desde la relacion que tengo entre libro y categoria quiero que utlice este atributo
     )
     autores = models.ManyToManyField(Autor)
     titulo = models.CharField(
