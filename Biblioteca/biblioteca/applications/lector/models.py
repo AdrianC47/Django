@@ -1,5 +1,6 @@
 from operator import mod
 from django.db import models
+from applications.lector.managers import PrestamoManager
 
 from applications.libro.models import Libro
 
@@ -42,6 +43,8 @@ class Prestamo(models.Model):
     )
     devuelto = models.BooleanField()
 
+    # Aquí conectamos el manager con el modelo
+    objects= PrestamoManager()
     class Meta:
         verbose_name = "Mi Prestamo"
         verbose_name_plural = "Prestamos"

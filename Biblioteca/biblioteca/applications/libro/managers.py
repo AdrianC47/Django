@@ -1,8 +1,6 @@
 import datetime
-from enum import auto
-from statistics import mode
 from django.db import models
-from django.db.models import Q, Count 
+from django.db.models import Count 
 class LibroManager(models.Manager):
     """Managers para el modelo Libro"""
 

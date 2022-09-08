@@ -13,6 +13,10 @@ pues lo que se usa es django-admin startapp (nombre de la aplicacion)
 Anexos:
 https://ccbv.co.uk/
 https://docs.djangoproject.com/en/3.0/ref/models/querysets/ <= ORM Django
+https://docs.djangoproject.com/en/3.0/ref/models/querysets/#annotate <= Annotate Documentacion
+https://docs.djangoproject.com/en/3.0/ref/models/querysets/#aggregate <= Aggregate Documentacion
+https://docs.djangoproject.com/en/3.0/ref/models/querysets/#id5 <= Funciones Aritméticas en el Aggregate
+https://docs.djangoproject.com/en/3.0/ref/models/database-functions/ <= Aritmética ORM django
 
 ==================================================================
 El archivo init.py se usa para indicar a Django cuales son los archivos/carpeta que debe leer
