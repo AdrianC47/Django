@@ -1,6 +1,7 @@
 import datetime
 from django.db import models
 from django.db.models import Q, Count, Avg, Sum
+from django.db.models.functions import Lower 
 
 class PrestamoManager(models.Manager):
     """Managers/Procedimientos para el modelo Prestamo"""
@@ -18,9 +19,11 @@ class PrestamoManager(models.Manager):
         resultado = self.values(
             #Aqui voy a indicar en base a qué parametro/atributo quiero que annotate empiece a 
             #agrupar los libros y me haga la funcion aritmetica  que le he especificado que en este caso es contar
-            'libro'
+            'libro',
+            'lector'
         ).annotate(
-            num_prestados=Count('libro')
+            num_prestados=Count('libro'),
+            titulo=Lower('libro__titulo'),
         )
         for r in resultado:
             print('=========================')
