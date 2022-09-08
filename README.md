@@ -10,6 +10,7 @@ Sin embargo para agilizar lo que se puede hacer es  configurar el manage.py para
 y una vez hecho esto solo es necesario el python manage.py runserver
 Para crear una aplicacion <== python manage.py startapp nombreAplicacion y si no estoy en la misma carpeta que el manage.py
 pues lo que se usa es django-admin startapp (nombre de la aplicacion)
+
 Anexos:
 https://ccbv.co.uk/
 https://docs.djangoproject.com/en/3.0/ref/models/querysets/ <= ORM Django
@@ -17,6 +18,8 @@ https://docs.djangoproject.com/en/3.0/ref/models/querysets/#annotate <= Annotate
 https://docs.djangoproject.com/en/3.0/ref/models/querysets/#aggregate <= Aggregate Documentacion
 https://docs.djangoproject.com/en/3.0/ref/models/querysets/#id5 <= Funciones Aritméticas en el Aggregate
 https://docs.djangoproject.com/en/3.0/ref/models/database-functions/ <= Aritmética ORM django
+
+https://docs.djangoproject.com/en/3.0/ref/contrib/postgres/search/#trigram-similarity <= Trigram Similarity
 
 ==================================================================
 El archivo init.py se usa para indicar a Django cuales son los archivos/carpeta que debe leer
