@@ -53,6 +53,16 @@ class LibroManager(models.Manager):
 # la operacion arimetica que le estemos indicando que haga el annotate
 # Sin embargo el aggregate vuelve a ser una operacion arimetica pero solo nos devuelve un diccionario con el valor de esa operacion arimetica que hayamos especificado 
 
+    def num_libros_prestados(self):
+        resultado = self.annotate(
+            num_prestados=Count('libro_prestamo')
+        )
+        for r in resultado:
+            print('=========================')
+            print(r, r.num_prestados)
+
+        return resultado 
+
 class CategoriaManager(models.Manager):
     """Managers para el modelo Categoria"""
 
