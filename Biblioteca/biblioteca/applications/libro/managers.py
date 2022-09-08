@@ -42,6 +42,19 @@ class LibroManager(models.Manager):
         libro.autores.add(autor)#si quiero eliminar solo va el remove a cambio del add
         return libro
 
+
+    def libros_num_prestamos(self):
+        resultado = self.aggregate(
+            #De igual forma que el annotate necesitaremos una variable  donde va a estar el valor
+            num_prestamos=Count('libro_prestamo')            
+        )
+        return resultado
+
+
+# Cuando usemos annotate nos va a devolver un QuerySet dependiendo de la consulta que estemos haciendo, añadido a ese queryset como una nueva columna
+# la operacion arimetica que le estemos indicando que haga el annotate
+# Sin embargo el aggregate vuelve a ser una operacion arimetica pero solo nos devuelve un diccionario con el valor de esa operacion arimetica que hayamos especificado 
+
 class CategoriaManager(models.Manager):
     """Managers para el modelo Categoria"""
 
@@ -65,3 +78,5 @@ class CategoriaManager(models.Manager):
             print("*******************")
             print(r, r.num_libros) ##gracias al annotate es como si el num_libros fuese un nuevo atributo del modelo Categoria
         return resultado #<==Esto es un QuerySet
+
+    
