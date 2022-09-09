@@ -7,7 +7,7 @@ from applications.libro.models import Libro
 # Create your models here.
 
 class Lector(models.Model):
-    nombre = models.CharField(
+    nombres = models.CharField(
          max_length=50
     )
     apellidos = models.CharField( 
@@ -17,7 +17,7 @@ class Lector(models.Model):
         max_length=20
     )
     
-    edad = models.PositiveIntegerField(default=0)
+    edad = models.PositiveIntegerField()
 
     class Meta:
         verbose_name = "Mi Lector"
