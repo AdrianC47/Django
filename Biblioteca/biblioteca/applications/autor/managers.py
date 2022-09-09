@@ -42,6 +42,6 @@ class AutorManager (models.Manager):
         resultado=self.filter(
             edad__gt= 60, # para los and solo se pone coma y la siguiente condicion
             edad__lt=85 #gt es > y lt es <
-        ).order_by("apellidos",'nombre', 'id')
+        ).order_by("apellidos",'nombres', 'id')
 
         return resultado 
