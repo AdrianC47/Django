@@ -31,9 +31,10 @@ class Libro (models.Model):
     fecha = models.DateField('Fecha de lanzamiento')
     portada = models.ImageField(upload_to='portada')
     visitas = models.PositiveIntegerField()
+    stock = models.PositiveIntegerField(default =0)
 
      # Aquí conectamos el manager con el modelo
     objects= LibroManager()
 
     def __str__(self):
-        return str(self.id) + '-' + self.categoria.nombre + '-'+ self.titulo+ '-' + str(self.fecha)  + '-' + str(self.visitas) 
+        return str(self.id) + '-' + self.categoria.nombre + '-'+ self.titulo+ '-' + str(self.fecha)  + '-' + str(self.visitas) +'-'+ str(self.stock)

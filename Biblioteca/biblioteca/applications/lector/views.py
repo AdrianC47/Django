@@ -33,4 +33,9 @@ class RegistrarPrestamo(FormView):
         )
         prestamo.save()#Con esto guardo la instancia
 
+        #Aqui se disminiuira el stock
+
+        libro = form.cleaned_data['libro']
+        libro.stock = libro.stock - 1
+        libro.save()#aqui actualizo el libro
         return super(RegistrarPrestamo, self).form_valid(form)

@@ -32,6 +32,17 @@ class Prestamo(models.Model):
 
     # Aquí conectamos el manager con el modelo
     objects= PrestamoManager()
+
+
+    def save(self, *args, **kwargs):
+        print('==================================')
+        # Aqui al sobreeescribir el metodo save lo que pudiera hacer es validaciones
+        # tal como disminuir el stock
+        self.libro.stock = self.libro.stock - 1
+        self.libro.save( )
+        super(Prestamo, self).save(*args, **kwargs)
+
+
     class Meta:
         verbose_name = "Mi Prestamo"
         verbose_name_plural = "Prestamos"
