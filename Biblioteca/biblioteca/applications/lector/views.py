@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.views.generic.edit import FormView
 from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
-from .models  import Prestamo
+from .models  import Prestamo, Libro
 from .forms import PrestamoForm, MultiplePrestamoForm
 # Create your views here.
 
@@ -84,6 +84,35 @@ class AddMultiplePrestamo(FormView):
     success_url = "." #redirecciono a la misma pagina
 
     def form_valid(self, form): 
+        #
+        print(form.cleaned_data['lector'])
+        print(form.cleaned_data['libros'])
+        # 
+        prestamos = []
+        for l in form.cleaned_data['libros']:
+            prestamo = Prestamo (
+                lector = form.cleaned_data['lector'],
+                libro = l,
+                fecha_prestamo = date.today(),
+                devuelto = False
+            )
+            prestamos.append(prestamo)#se añade a la lista el objeto, si bien se pudiera usar el save pues hacer eso por cada registro no es optimo
 
+        libros = []
+        
+        for l in prestamos:
+            l.libro.stock -= 1
+            libros.append(l.libro)
+
+        Libro.objects.bulk_update(
+            libros,
+            ['stock'],
+        )
+        # la siguiente funcion es de la ORM de django y es para guardar varios objetos de un modelo a partir de una lista
+        # y lo hace en una sola consulta, lo que hace nuestro codigo mas optimo
+        Prestamo.objects.bulk_create(  
+            prestamos
+        )
+        
         return super(AddMultiplePrestamo, self).form_valid(form)    
     
