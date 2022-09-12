@@ -6,7 +6,7 @@ from django.views.generic.edit import FormView
 from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
 from .models  import Prestamo
-from .forms import PrestamoForm
+from .forms import PrestamoForm, MultiplePrestamoForm
 # Create your views here.
 
 class RegistrarPrestamo(FormView):
@@ -76,4 +76,14 @@ class AddPrestamo(FormView):
     
 class ErrorView(TemplateView):
     template_name = "lector/error.html"
+
+
+class AddMultiplePrestamo(FormView):
+    template_name= "lector/add_multiple_prestamo.html"  
+    form_class = MultiplePrestamoForm
+    success_url = "." #redirecciono a la misma pagina
+
+    def form_valid(self, form): 
+
+        return super(AddMultiplePrestamo, self).form_valid(form)    
     
