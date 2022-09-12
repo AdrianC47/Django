@@ -1,5 +1,6 @@
 from operator import mod
 from django.db import models
+from django.http import HttpResponseRedirect
 from applications.lector.managers import PrestamoManager
 
 from applications.libro.models import Libro
