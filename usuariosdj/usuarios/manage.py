@@ -6,7 +6,7 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'usuarios.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'usuarios.settings.local')#aqui mando a configurar el manage.py para que se ejecute en mi entorno local
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
