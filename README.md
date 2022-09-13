@@ -1,4 +1,3 @@
-=======================*********************************************************************==========================
 Se plantea el seguimiento de un curso de Django
 Crear un entorno <=== python -m venv entorno
 Instalar django <= Dentro del entorno se ejecuta pip install django

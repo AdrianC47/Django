@@ -37,7 +37,10 @@ DJANGO_APPS = (
     'django.contrib.staticfiles',
 )
 
-LOCAL_APPS = () #Van a ir solamente aplicaciones que instalemos en nuestro proyecto, pero que sean para el entorno local o de nuestro entorno local (aplicaciones propias)
+LOCAL_APPS = ( #Van a ir solamente aplicaciones que instalemos en nuestro proyecto, pero que sean para el entorno local o de nuestro entorno local (aplicaciones propias)
+    'applications.users',
+    'applications.home'
+) 
 
 THIRD_PARTY_APPS = () #Aplicaciones de terceros
 
