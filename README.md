@@ -16,6 +16,9 @@ python manage.py migrate -- fake <= Falsa migracion, nos sirve cuando los modelo
 En caso de que obtener el error django.db.utils.ProgrammingError: relation does not exist LINE 1 
 revisar si estan las carpetas migrations en cada app
 
+- Para ver los paquetes instalados en mi entorno local uso pip freeze --local
+- Para instalar los paquetes desde el txt uso: pip install -r .\local.txt
+
 Anexos:
 https://ccbv.co.uk/
 https://docs.djangoproject.com/en/3.0/ref/models/querysets/ <= ORM Django
