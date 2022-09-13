@@ -59,12 +59,12 @@ def optimize_image(sender, instance, **kwargs):   #Se pasan los siguientes param
 # Se conecta la funcion con la que quiero trabajar y el modelo, es decir quiero que se ejecute esta funcion 
 post_save.connect(optimize_image,sender = Libro)   #Cuando se guarde qué registro(Libro) quiero que se ejecute una función (optimize_image)
 
+#Tarea
+# def funcion_para_PreSave(sender, instance, **kwargs):
+#     print('***********************************')
+#     print(instance)
+#     if instance.stock:
+#         instance.stock = instance.stock +1
 
-def funcion_para_PreSave(sender, instance, **kwargs):
-    print('***********************************')
-    print(instance)
-    if instance.stock:
-        instance.stock = instance.stock +1
 
-
-pre_save.connect(funcion_para_PreSave, sender = Libro)
+# pre_save.connect(funcion_para_PreSave, sender = Libro)

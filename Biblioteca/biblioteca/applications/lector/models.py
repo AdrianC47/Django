@@ -1,7 +1,10 @@
 from operator import mod
 from django.db import models
+from django.db.models.signals import post_delete 
+
 from django.http import HttpResponseRedirect
 from applications.lector.managers import PrestamoManager
+from .signals import update_libro_stock
 
 from applications.libro.models import Libro
 from applications.autor.models import Persona
@@ -49,3 +52,6 @@ class Prestamo(models.Model):
         verbose_name_plural = "Prestamos"
     def __str__(self):
         return self.lector.nombres + '-' + self.libro.titulo + '-' + str(self.fecha_prestamo) + '-' + str(self.fecha_devolucion) + '-' +str(self.devuelto)
+
+
+post_delete.connect(update_libro_stock, sender=Prestamo)
