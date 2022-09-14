@@ -9,7 +9,7 @@ class UserManager(BaseUserManager,models.Manager):
 # el is_staff hace referencia a que si el usuario que esta creandose puede on no acceder al admin
 # el is_superuser hace referencia a que si el usuario que se esta creando es o no un superusuario
 
-    def create_user(self, username,email, password, is_staff, is_superuser,**extra_fields): 
+    def _create_user(self, username,email, password, is_staff, is_superuser,**extra_fields): 
         user = self.model (
             username = username,
             email = email,
@@ -22,6 +22,9 @@ class UserManager(BaseUserManager,models.Manager):
         #self.db hace referencia a la bd con la cual estoy trabajando
         user.save(using=self.db)
         return user
+
+    def create_user(self, username, email, password=None, **extra_fields):
+        return self.create_user(username, password, email, False, False, **extra_fields)
 
     def create_superuser(self,username,email, password,**extra_fields):# los extra_fields hacen referenccia a cualquier otro atributo que se agregue
          #funcion privada
