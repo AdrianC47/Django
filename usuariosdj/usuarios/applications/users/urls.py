@@ -6,7 +6,7 @@ app_name = 'users_app'
 urlpatterns = [
     path(
         'register/',
-        views.UserRegisterCreateView.as_view(),
+        views.UserRegisterView.as_view(),
         name='user-register'
     ),
 ]

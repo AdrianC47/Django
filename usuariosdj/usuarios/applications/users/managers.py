@@ -24,7 +24,7 @@ class UserManager(BaseUserManager,models.Manager):
         return user
 
     def create_user(self, username, email, password=None, **extra_fields):
-        return self.create_user(username, password, email, False, False, **extra_fields)
+        return self._create_user(username, email, password, False, False, **extra_fields)
 
     def create_superuser(self,username,email, password,**extra_fields):# los extra_fields hacen referenccia a cualquier otro atributo que se agregue
          #funcion privada
