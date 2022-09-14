@@ -25,3 +25,5 @@ class UserRegisterView(FormView):
         )
         #
         return super(UserRegisterView, self).form_valid(form)
+
+        

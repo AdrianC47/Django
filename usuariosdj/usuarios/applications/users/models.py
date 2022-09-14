@@ -1,3 +1,4 @@
+import email
 from django.db import models
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
@@ -12,11 +13,11 @@ class User(AbstractBaseUser, PermissionsMixin ):
         ('O','Otros'),
     )
 
-    username = models.CharField(max_length=10, unique=True)
-    email = models.EmailField()
-    nombres = models.CharField(max_length=30, blank=True)
-    apellidos = models.CharField(max_length=30, blank=True)
-    genero = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
+    username = models.CharField("Usuario",max_length=10, unique=True)
+    email = models.EmailField("Email")
+    nombres = models.CharField("Nombres",max_length=30, blank=True)
+    apellidos = models.CharField("Apellidos",max_length=30, blank=True)
+    genero = models.CharField("Genero",max_length=1, choices=GENDER_CHOICES, blank=True)
     #
     is_staff  = models.BooleanField(default=False)
     
@@ -31,3 +32,10 @@ class User(AbstractBaseUser, PermissionsMixin ):
 
     def get_full_name(self):
         return self.nombres + ' ' + self.apellidos
+
+    class Meta:
+        verbose_name = 'Mi Usuario'
+        verbose_name_plural ='Usuarios de la Empresa'
+
+    def __str__(self):
+        return self.username + ' ' + self.email + ' ' + str(self.password) + ' ' + self.genero + ' ' +str(self.get_full_name())
