@@ -57,7 +57,7 @@ class UserRegisterForm(forms.ModelForm):
         if self.cleaned_data['password1']!= self.cleaned_data['password2']:
             self.add_error('password2', 'Las contraseñas no coinciden')    #añado un error especificando el campo del formulario en el cual quiero mostrarlo
 
-class LoginForm(forms.Form) : #aqui se herda del forms debido a que no estoy trabajando con un modelo y formulario directamente
+class LoginForm(forms.Form) : #aqui se hereda del forms debido a que no estoy trabajando con un modelo y formulario directamente
 
     username = forms.CharField(
  
@@ -94,3 +94,25 @@ class LoginForm(forms.Form) : #aqui se herda del forms debido a que no estoy tra
 
         return self.cleaned_data
     
+class UpdatePasswordForm(forms.Form):
+    
+    password1 = forms.CharField(
+        min_length=5,
+        label='Contraseña',
+        required=True,
+        widget= forms.PasswordInput(
+            attrs={
+                'placeholder': 'Contraseña Actual'
+            }
+        )
+    ) 
+    password2 = forms.CharField(
+        min_length=5,
+        label='Contraseña',
+        required=True,
+        widget= forms.PasswordInput(
+            attrs={
+                'placeholder': 'Contraseña Nueva'
+            }
+        )
+    ) 
