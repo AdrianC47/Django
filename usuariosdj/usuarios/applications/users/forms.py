@@ -2,7 +2,7 @@ from dataclasses import fields
 from django import forms
 from .models import User
 from django.db.models import Q 
-
+from django.contrib.auth import authenticate
 
 class UserRegisterForm(forms.ModelForm):
 
@@ -81,4 +81,16 @@ class LoginForm(forms.Form) : #aqui se herda del forms debido a que no estoy tra
         )
     ) 
  
+    def clean(self): #Con el nombre clean  ya sabe directamente Django que debe ser una de las primera funciones a ejecutar
+    
+        #En este caso los campos de username y password no los tengo debido a que son un método, si bien con el cleaned_data los llamo pues necesito indicar de donde los llamo
+        #que seria el Formulario, para ello hago lo siguiente
+        cleaned_data = super(LoginForm,self).clean()
+        username = self.cleaned_data['username']
+        password = self.cleaned_data['password']
+        
+        if not authenticate(username= username, password = password):
+            raise forms.ValidationError('Los datos de usuario no son correctos')
+
+        return self.cleaned_data
     
