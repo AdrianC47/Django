@@ -18,8 +18,13 @@ class User(AbstractBaseUser, PermissionsMixin ):
     nombres = models.CharField("Nombres",max_length=30, blank=True)
     apellidos = models.CharField("Apellidos",max_length=30, blank=True)
     genero = models.CharField("Genero",max_length=1, choices=GENDER_CHOICES, blank=True)
+    codRegistro = models.CharField(max_length=6, blank=True)
+
     #
     is_staff  = models.BooleanField(default=False)
+
+    #atributo de AbstractBaseUser que permite determinar si el usuario está activo o no (si el email es correcto o no)
+    is_active = models.BooleanField(default=False)
     
     USERNAME_FIELD = 'username'
 
