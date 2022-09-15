@@ -1,8 +1,9 @@
 from django.shortcuts import render
-
+from django.urls import reverse_lazy
+from django.contrib.auth import authenticate, login
 from django.views.generic import CreateView, FormView
 
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, LoginForm
 
 from .models import User
 # Create your views here.
@@ -26,4 +27,20 @@ class UserRegisterView(FormView):
         #
         return super(UserRegisterView, self).form_valid(form)
 
-        
+class LoginUser(FormView):
+    template_name = "users/login.html"
+    form_class = LoginForm
+    success_url = reverse_lazy('home_app:panel')
+    #obtengo el formulario
+
+    def form_valid(self, form):
+        user = authenticate( #Con esta funcion haria la comparativa para la autenticación
+            username= form.cleaned_data['username'], #recupero los datos del formulario
+            password = form.cleaned_data['password']
+        )
+        #Con esta funcion haria el login pasandole primero el contexto (request) porque  necesita a ese usuario asignarle a un proyecto de la sesion actual
+        # y le mando el usuario para que esté activo durante toda la sesión
+
+        login(self.request, user) 
+       
+        return super(LoginUser, self).form_valid(form)
