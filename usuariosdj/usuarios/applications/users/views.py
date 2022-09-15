@@ -1,4 +1,6 @@
+import email
 from django.shortcuts import render
+from django.core.mail import send_mail
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import CreateView, FormView, View
@@ -6,7 +8,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import UserRegisterForm, LoginForm, UpdatePasswordForm
-
+from .functions import code_generator
 from .models import User
 # Create your views here.
 
@@ -18,6 +20,8 @@ class UserRegisterView(FormView):
 
     def form_valid(self, form):
         #
+        #Generamos el codigo
+        codigo = code_generator()
         User.objects.create_user(
             form.cleaned_data['username'],
             form.cleaned_data['email'],
@@ -25,9 +29,17 @@ class UserRegisterView(FormView):
             nombres = form.cleaned_data['nombres'],#asi pongo los extrafields
             apellidos = form.cleaned_data['apellidos'],
             genero = form.cleaned_data['genero'], 
+            codRegistro = codigo,
         )
+        # Enviar el codigo al email del usuario
+        asunto = 'Confirmacion de email'
+        mensaje = 'Codigo de verificacion ' +codigo
+        email_remitente = 'adriancabrera2104@gmail.com'
         #
-        return super(UserRegisterView, self).form_valid(form)
+        send_mail(asunto,mensaje, email_remitente, [form.cleaned_data['email'],])#aqui se manda un [] debido a que se puede mandar a mas de un correo aunque no se lo recomienda por el consumo
+        # Redirigir a pantalla de validaicon 
+
+        return HttpResponseRedirect( reverse('users_app:user-login'))
 
 class LoginUser(FormView):
     template_name = "users/login.html"
