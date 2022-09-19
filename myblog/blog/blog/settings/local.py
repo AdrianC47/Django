@@ -32,6 +32,18 @@ CKEDITOR_IMAGE_BACKEND = 'pillow' #Lo que es imagenes administra la app pillow
 # Necesita de un archivo Jquery para algunas funciones  y esto si bien si lo trae consigo pues se puede escificar otra fuente 
 # donde sepamos que que el Jquey siempre va a estar bien
 CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom' : [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'OutIdent', 'Ident', '-', 'JustifyLeft', 'JustifyRight', 'JustifyCenter'],
+            ['TextColor', 'Format', 'FontSize', 'Link'],
+            ['Smiley', 'Image', 'Iframe'],
+            ['RemoveFormat', 'Source'],
+        ]
+    },
+}
 
 # EMAIL SETTINGS
 # EMAIL_USE_TLS = True
