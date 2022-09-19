@@ -10,6 +10,7 @@ Sin embargo para agilizar lo que se puede hacer es  configurar el manage.py para
 y una vez hecho esto solo es necesario el python manage.py runserver
 Para crear una aplicacion <== python manage.py startapp nombreAplicacion y si no estoy en la misma carpeta que el manage.py
 pues lo que se usa es django-admin startapp (nombre de la aplicacion)
+Django Model Utils (para no repetir codigo en los modelos) <==pip install django-model-utils
 
 python manage.py migrate -- fake <= Falsa migracion, nos sirve cuando los modelos ya estan creados y hemos reestrcturado nuestro proyecto pero queremos migrar y evitamos el error
 
