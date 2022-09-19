@@ -42,7 +42,7 @@ class UserRegisterView(FormView):
 
         return HttpResponseRedirect(reverse(
             'users_app:user-verification',
-            kwargs={'pk':usuario.id}
+            kwargs={'pk':usuario.id} #se mandan los parametros
             )
         )
 
