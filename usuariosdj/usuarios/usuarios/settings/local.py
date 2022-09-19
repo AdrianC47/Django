@@ -29,4 +29,14 @@ STATICFILES_DIRS = [BASE_DIR / 'static']#Dentro de mi directorio base busco mi c
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# EMAIL SETTINGS 
 
+EMAIL_USE_TLS = True # Se activa el envio de email con Djang
+EMAIL_HOST = 'smtp.gmail.com' # SMTP
+EMAIL_HOST_USER = get_secret("EMAIL")#Correo que va a abrir el email
+EMAIL_HOST_PASSWORD = get_secret("PASS_EMAIL")
+EMAIL_PORT = '587'    # PUERTO 
+#https://www.youtube.com/watch?v=RpSQQIGTpTM
+
+
+ 

@@ -7,7 +7,7 @@ from django.views.generic import CreateView, FormView, View
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .forms import UserRegisterForm, LoginForm, UpdatePasswordForm
+from .forms import UserRegisterForm, LoginForm, UpdatePasswordForm, VerificationForm
 from .functions import code_generator
 from .models import User
 # Create your views here.
@@ -34,12 +34,13 @@ class UserRegisterView(FormView):
         # Enviar el codigo al email del usuario
         asunto = 'Confirmacion de email'
         mensaje = 'Codigo de verificacion ' +codigo
-        email_remitente = 'adriancabrera2104@gmail.com'
+        email_remitente = "adriancabrera2104@gmail.com"
+ 
         #
         send_mail(asunto,mensaje, email_remitente, [form.cleaned_data['email'],])#aqui se manda un [] debido a que se puede mandar a mas de un correo aunque no se lo recomienda por el consumo
         # Redirigir a pantalla de validaicon 
 
-        return HttpResponseRedirect( reverse('users_app:user-login'))
+        return HttpResponseRedirect( reverse('users_app:user-verification'))
 
 class LoginUser(FormView):
     template_name = "users/login.html"
@@ -84,3 +85,13 @@ class UpdatePasswordFormView(LoginRequiredMixin,FormView):
             usuario.save()
         logout(self.request)    
         return super(UpdatePasswordFormView, self).form_valid(form)
+
+class CodeVerificationView(FormView):
+    template_name = "users/verification.html"
+    form_class = VerificationForm
+    success_url = reverse_lazy('users_app:user-login')
+
+    def form_valid(self, form):
+ 
+       
+        return super(CodeVerificationView, self).form_valid(form)

@@ -116,3 +116,6 @@ class UpdatePasswordForm(forms.Form):
             }
         )
     ) 
+
+class VerificationForm(forms.Form):
+    codRegistro = forms.CharField( max_length=50)
