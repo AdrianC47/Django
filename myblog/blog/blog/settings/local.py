@@ -26,6 +26,13 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# Ckeditor Settings
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = 'pillow' #Lo que es imagenes administra la app pillow
+# Necesita de un archivo Jquery para algunas funciones  y esto si bien si lo trae consigo pues se puede escificar otra fuente 
+# donde sepamos que que el Jquey siempre va a estar bien
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+
 # EMAIL SETTINGS
 # EMAIL_USE_TLS = True
 # EMAIL_HOST = 'smtp.gmail.com'
