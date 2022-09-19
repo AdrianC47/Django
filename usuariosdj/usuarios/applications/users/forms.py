@@ -1,4 +1,5 @@
 from dataclasses import fields
+from mimetypes import init
 from django import forms
 from .models import User
 from django.db.models import Q 
@@ -120,6 +121,10 @@ class UpdatePasswordForm(forms.Form):
 class VerificationForm(forms.Form):
     codRegistro = forms.CharField( max_length=50)
 
+    def __init__(self, pk,  *args, **kwargs):
+            self.id_user =  pk
+            super(VerificationForm, self).__init__(*args, **kwargs)
+
     def clean_codRegistro(self):
         codigo = self.cleaned_data['codRegistro']
 
@@ -128,7 +133,7 @@ class VerificationForm(forms.Form):
             # se va a hacer esa validacion en los managers
             # Verificamos si el codigo y el id de usuario son validos:
             activo = User.objects.cod_validation (
-                self.kwargs['pk'],
+                self.id_user, # de esta forma accedo a la variable que me mandan desde la vista 
                 codigo
             )
             if not activo:
