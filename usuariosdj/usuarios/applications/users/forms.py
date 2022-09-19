@@ -119,3 +119,20 @@ class UpdatePasswordForm(forms.Form):
 
 class VerificationForm(forms.Form):
     codRegistro = forms.CharField( max_length=50)
+
+    def clean_codRegistro(self):
+        codigo = self.cleaned_data['codRegistro']
+
+        if len(codigo) == 6:
+            # necesito saber si el codigo que manda le pertenece al usuario que se manda su ID por URL
+            # se va a hacer esa validacion en los managers
+            # Verificamos si el codigo y el id de usuario son validos:
+            activo = User.objects.cod_validation (
+                self.kwargs['pk'],
+                codigo
+            )
+            if not activo:
+                raise forms.ValidationError('El codigo es incorrecto') 
+        else:
+
+            raise forms.ValidationError('El codigo es incorrecto')  

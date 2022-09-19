@@ -29,3 +29,9 @@ class UserManager(BaseUserManager,models.Manager):
     def create_superuser(self,username,email, password,**extra_fields):# los extra_fields hacen referenccia a cualquier otro atributo que se agregue
          #funcion privada
         return self._create_user(username,email,password,True,True,**extra_fields) #se debe indicar si el usuario es activo(que puede acceder al admin)
+
+    def cod_validation(self, id_user, cod_registro):
+        if self.filter(id= id_user,codRegistro = cod_registro).exists():
+            return True
+        else:
+            return False

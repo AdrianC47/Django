@@ -22,7 +22,7 @@ class UserRegisterView(FormView):
         #
         #Generamos el codigo
         codigo = code_generator()
-        User.objects.create_user(
+        usuario = User.objects.create_user(
             form.cleaned_data['username'],
             form.cleaned_data['email'],
             form.cleaned_data['password1'],
@@ -40,7 +40,11 @@ class UserRegisterView(FormView):
         send_mail(asunto,mensaje, email_remitente, [form.cleaned_data['email'],])#aqui se manda un [] debido a que se puede mandar a mas de un correo aunque no se lo recomienda por el consumo
         # Redirigir a pantalla de validaicon 
 
-        return HttpResponseRedirect( reverse('users_app:user-verification'))
+        return HttpResponseRedirect(reverse(
+            'users_app:user-verification',
+            kwargs={'pk':usuario.id}
+            )
+        )
 
 class LoginUser(FormView):
     template_name = "users/login.html"
@@ -92,6 +96,6 @@ class CodeVerificationView(FormView):
     success_url = reverse_lazy('users_app:user-login')
 
     def form_valid(self, form):
- 
-       
+        #
+
         return super(CodeVerificationView, self).form_valid(form)
