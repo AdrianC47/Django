@@ -10,7 +10,7 @@ from applications.entrada.models import Entry
 # Models 
 from .models import Home
 # Forms
-from .forms import SubscribersForm
+from .forms import SubscribersForm, ContactForm
 
 class HomePageView(TemplateView):
     template_name = "home/index.html"
@@ -35,3 +35,8 @@ class SubscriberCreateView(CreateView):
     form_class = SubscribersForm #El CreateView guarda un registro en base a la info del formulario
     success_url = "/"
 
+# No siempre es necesario jalar directamente el formulario
+class ContactCreateView(CreateView):
+    form_class = ContactForm
+    success_url = '/'
+#Necesito que este View reciba un html pero bajo el formato del ContactForm

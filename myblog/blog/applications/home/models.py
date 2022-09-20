@@ -49,4 +49,7 @@ class Contact(TimeStampedModel):
 
     class Meta:
         verbose_name = "Contacto"
-        verbose_name_plural = "Mensajes"
+        verbose_name_plural = "Contactos"
+
+    def __str__(self):
+        return self.full_name + "-"+ self.email 
