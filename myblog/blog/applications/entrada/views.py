@@ -9,7 +9,7 @@ class EntryListView(ListView):
  
     template_name = "entrada/lista.html"
     context_object_name = "entradas"
-    paginate_by = 10
+    paginate_by = 6
 
     
     def get_context_data(self, **kwargs): #este metodo sirve para enviar alguna variable extra al template

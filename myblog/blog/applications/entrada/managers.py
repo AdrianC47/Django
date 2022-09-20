@@ -28,7 +28,7 @@ class EntryManager(models.Manager):
         # Procedimiento para buscar entradas por categoria o palabra clave
         if len(categoria) > 0:
             return self.filter(
-                category_name = categoria,
+                category__short_name = categoria,
                 title__icontains =kword,
                 public = True
             ).order_by('-created')
