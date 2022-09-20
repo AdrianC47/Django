@@ -25,7 +25,7 @@ class Category(TimeStampedModel):
         verbose_name_plural = "Categorias"
 
     def __str__(self):
-        return self.name
+        return self.name + '-' + self.short_name
 
 class Tag (TimeStampedModel):
     """Etiquetas de un Artículo """

@@ -1,3 +1,4 @@
+from xml.dom import ValidationErr
 from django.db import models
 
 class EntryManager(models.Manager):
@@ -22,3 +23,17 @@ class EntryManager(models.Manager):
         return self.filter (
             public = True,
         ).order_by('-created')[:6]
+
+    def buscar_entrada(self, kword, categoria):
+        # Procedimiento para buscar entradas por categoria o palabra clave
+        if len(categoria) > 0:
+            return self.filter(
+                category_name = categoria,
+                title__icontains =kword,
+                public = True
+            ).order_by('-created')
+        else:# si no cumple pues se hace el filtro en base a la palabra clave
+            return self.filter(
+                title__icontains = kword,
+                public = True
+            ).order_by('-created')

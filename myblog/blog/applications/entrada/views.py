@@ -1,6 +1,9 @@
+from tkinter import Entry
 from django.shortcuts import render
 from django.views.generic import ListView
 # Create your views here.
+
+from .models import Category, Entry
 
 class EntryListView(ListView):
  
@@ -8,6 +11,16 @@ class EntryListView(ListView):
     context_object_name = "entradas"
     paginate_by = 10
 
-    def get_queryset(self):
+    
+    def get_context_data(self, **kwargs): #este metodo sirve para enviar alguna variable extra al template
+        context = super(EntryListView, self).get_context_data(**kwargs)
+        context["categorias"] = Category.objects.all() # Recuperamos todas las categorias que se tienen en la BD
+        return context
+    
 
-        return []
+    def get_queryset(self):
+        kword = self.request.GET.get("kword", '')
+        categoria = self.request.GET.get("categoria",'')
+        #   Consulta de búsqueda
+        resultado = Entry.objects.buscar_entrada(kword,categoria)
+        return resultado
