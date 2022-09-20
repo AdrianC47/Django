@@ -41,10 +41,8 @@
     <!-- segundo bloque pantalla home -->
     <div class="grid-x align-center" style="margin-top: 1em;">
         <div class="cell small-12 large-10 callout secondary">
-            <h5>Conoce mas de nostros:</h5>
-            <p>
-                Creamos contenido educativo relacionado a la programación web, frontend backedn, servidores y demás, para enterarte sobre nuevas publicaciones suscribete a nuestro blog.
-            </p>
+            <h5>{{ home.about_title }}</h5>
+            <p>{{home.about_text}}</p>
 
             <p>
                 <button class="button" data-open="exampleModal2">Suscribirme</button>
@@ -55,7 +53,8 @@
                 <p class="lead">Ingresa tu correo</p>
                 <form class="grid-x grid-margin-x">
                     <div class="cell small-12">
-                        <input type="text" placeholder="E-mail..">
+                        <!-- <input type="text" placeholder="E-mail.."> -->
+                        {{form.email}}
                     </div>
                     <div class="cell small-12">
                         <button type="button" class="success button">Suscribirme</button>
