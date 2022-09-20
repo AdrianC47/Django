@@ -33,5 +33,5 @@ class HomePageView(TemplateView):
 class SubscriberCreateView(CreateView):
     # En este caso por el modal de foundation ya no se necesita un template 
     form_class = SubscribersForm #El CreateView guarda un registro en base a la info del formulario
-    success_url = "."
+    success_url = "/"
 
