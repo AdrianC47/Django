@@ -7,7 +7,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 
 class FechaMixin(object): #Usualmente los mixin deben ir al inicio
-    
     def get_context_data(self, **kwargs):#Esta funcion es cuando quiero mandar un contexto al template
         context = super(FechaMixin, self).get_context_data(**kwargs)
         context['fecha'] = datetime.datetime.now() #contexto fecha

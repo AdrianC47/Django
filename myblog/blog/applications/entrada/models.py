@@ -9,6 +9,9 @@ from django.conf import settings
 from model_utils.models import TimeStampedModel
 from ckeditor_uploader.fields import RichTextUploadingField
 
+
+# Managers
+from .managers import EntryManager
 # Create your models here.
 
 class Category(TimeStampedModel):
@@ -62,6 +65,7 @@ class Entry(TimeStampedModel):
     in_home = models.BooleanField(default=False) # Atributo que indica si queremos que el articulo figure en la pantalla principal
     slug = models.SlugField(editable=False, max_length=300)
 
+    objects  = EntryManager()
     class Meta:
         verbose_name = "Entrada"
         verbose_name_plural = "Entradas"
