@@ -15,5 +15,9 @@ class HomePageView(TemplateView):
         context = super(HomePageView, self).get_context_data(**kwargs)
         # contexto de portada
         context["portada"] = Entry.objects.entrada_en_portada() #Contexto/Variable portada
+        # Contexto para los artículos en home (in_home)
+        context["entradas_home"] = Entry.objects.entradas_en_home()
+        # Entradas Recientes
+        context["entradas_recientes"] = Entry.objects.entradas_recientes()
         return context
     
