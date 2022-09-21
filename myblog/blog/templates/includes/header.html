@@ -16,9 +16,12 @@
                 <li><a href="{% url 'entrada_app:entry-lista' %}">Blog</a>
                 </li>
                 <li>
-                    <a href="{% url 'users_app:user-login' %}" class="success button">Acceder</a>
+                {% if not user.is_anonymous %} <!--Aqui en pocas palabras se pregunta si  esta logeado o es un usuario anonimo-->
+                <a href="{% url 'favoritos_app:perfil' %}" class="warning button">Perfil</a> 
+                {% else %} 
+                <a href="{% url 'users_app:user-login' %}" class="success button">Acceder</a> 
+                {% endif %}
                 </li>
-                
             </ul>
         </div>
     </div>
