@@ -4,8 +4,10 @@ from django.db import models
 from django.conf import settings
 # Apps Terceros
 from model_utils.models import TimeStampedModel
-
+#
 from applications.entrada.models import Entry
+#
+from .managers import FavoritesManager
 
 # Create your models here.
 
@@ -24,7 +26,7 @@ class Favorites(TimeStampedModel):
         on_delete=models.CASCADE
     )
 
-
+    objects= FavoritesManager()
 
     class Meta:
         #Cuando un usuario guarde algún blog favorito, no nos gustaría que guarde el mismo blog como favorito, una única vez
