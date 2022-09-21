@@ -15,7 +15,7 @@ class PrestamoForm(forms.ModelForm):
 
 class MultiplePrestamoForm(forms.ModelForm):
     # esto me dice que voy a recuperar un conjunto relacionado o de un MODELO en particular de nuestra base de datos
-    libros = forms.ModelMultipleChoiceField(
+    libros = forms.ModelMultipleChoiceField( #esto estoy construyendo, no pertenece a mi modelo
         #Entonces debo indicar qué modelo es ése, por ello necesita el queryset 
         queryset= None,# primero lo declaro ya luego lo obtengo por medio de una funcion
         required = True,# al menos un libro necesito

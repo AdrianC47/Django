@@ -6,7 +6,8 @@ from django.db.models import Q
 from django.contrib.auth import authenticate
 
 class UserRegisterForm(forms.ModelForm):
-
+    #Debido a que jamás se debe guardar una contraseña como un dato plano, lo que se hace es en el 
+    # formulario agregar un campo extra para lo que es la contraseña
     password1 = forms.CharField(
         min_length=5,
         label='Contraseña',
@@ -59,7 +60,7 @@ class UserRegisterForm(forms.ModelForm):
             self.add_error('password2', 'Las contraseñas no coinciden')    #añado un error especificando el campo del formulario en el cual quiero mostrarlo
 
 class LoginForm(forms.Form) : #aqui se hereda del forms debido a que no estoy trabajando con un modelo y formulario directamente
-
+    
     username = forms.CharField(
  
         label='Username',
