@@ -2,7 +2,7 @@ from django.shortcuts import render
 # Necesitamos indicar que solo un usuario logeado pueda ingresar a las vistas de aqui entonces necesito:
 from django.contrib.auth.mixins import LoginRequiredMixin # Este paquete
 #
-from django.views.generic import ListView, View
+from django.views.generic import ListView, View, DeleteView
 #
 from django.http import HttpResponseRedirect
 #
@@ -25,7 +25,8 @@ class UserPageView(LoginRequiredMixin, ListView):
 
         return Favorites.objects.entradas_user(self.request.user) #mando como parametro el usuario activo
 
-class AddFavoritosView(View):
+class AddFavoritosView(LoginRequiredMixin,View):
+    login_url = reverse_lazy("users_app:user-login")
     
     def post(self, request, *args, **kwargs):
         # recuperar el usuario
@@ -42,3 +43,8 @@ class AddFavoritosView(View):
                     'favoritos_app:perfil'
                 )
         )
+
+
+class FavoritesDeleteView(DeleteView):
+    model = Favorites
+    success_url =reverse_lazy('favoritos_app:perfil')
