@@ -33,9 +33,10 @@ class UserRegisterView(FormView):
         #
         User.objects.create_user(
             form.cleaned_data['email'],
-            form.cleaned_data['full_name'],
             form.cleaned_data['password1'],
-            ocupation=form.cleaned_data['apellidos'],
+            # Los siguientes se pasan como extrafields
+            full_name=form.cleaned_data['full_name'],
+            ocupation=form.cleaned_data['ocupation'],
             genero=form.cleaned_data['genero'],
             date_birth=form.cleaned_data['date_birth'],
         )
@@ -47,13 +48,15 @@ class UserRegisterView(FormView):
 class LoginUser(FormView):
     template_name = 'users/login.html'
     form_class = LoginForm
-    success_url = reverse_lazy('home_app:home-user')
+    success_url = reverse_lazy('home_app:index')
 
     def form_valid(self, form):
-        user = authenticate(
+        user = authenticate( # verifico los datosdel usuario
             email=form.cleaned_data['email'],
             password=form.cleaned_data['password']
         )
+         #Con esta funcion haria el login pasandole primero el contexto (request) porque  necesita a ese usuario asignarle a un proyecto de la sesion actual
+        # y le mando el usuario para que esté activo durante toda la sesión
         login(self.request, user)
         return super(LoginUser, self).form_valid(form)
 
