@@ -1,6 +1,17 @@
 <!-- head para PC -->
 {% extends "home/base_home.html" %}
+
 {% load  static %}
+
+{% block title %}
+{{home.title}}
+{% endblock title %}
+
+{% block description %}
+<!-- aqui usamos la etiqueta meta para que el motor de busqueda sepa que aquí va la descripción,
+lo cual ayudará a determinar de que va nuestro sitio-->
+<meta name="description" content="{{home.description}}">
+{% endblock description %}
 
 {% block content %}
 
