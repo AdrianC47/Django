@@ -1,9 +1,10 @@
-from distutils.command.upload import upload
-from tabnanny import verbose
-from unicodedata import category
-from xml.parsers.expat import model
+# standard library
+from datetime import timedelta, datetime
+import imp
 from django.db import models
 from django.conf import settings
+#
+from django.template.defaultfilters import slugify
 
 # Apps Terceros
 from model_utils.models import TimeStampedModel
@@ -63,7 +64,8 @@ class Entry(TimeStampedModel):
     )
     portada = models.BooleanField(default=False) # Atributo que indica si queremos que este articulo esté en la portada o no
     in_home = models.BooleanField(default=False) # Atributo que indica si queremos que el articulo figure en la pantalla principal
-    slug = models.SlugField(editable=False, max_length=300)
+   
+    slug = models.SlugField(editable=False, max_length=300) # Atributo para trabajar con las URLS generadas automáticamente , para el SEO
 
     objects  = EntryManager()
     class Meta:
@@ -72,3 +74,20 @@ class Entry(TimeStampedModel):
 
     def __str__(self):
         return self.title
+    
+    def save(self, *args, **kwargs):
+        # calculamos el total de segundos de la hora actual
+        now = datetime.now()
+        total_time = timedelta(
+            # Generamos una cadena 
+            hours = now.hour,
+            minutes = now.minute,
+            seconds = now.second
+        )
+        # Se genera un número en base al tiempo actual
+        seconds = int(total_time.total_seconds())
+        slug_unique = '%s %s' % (self.title, str(seconds))
+
+        self.slug = slugify(slug_unique) #convierto mi cadena de texto en un slug para que puda estar en la url
+
+        super(Entry, self).save(*args, **kwargs ) # De esta forma genero el slug unico para la URL a fin de mejorar con el SEO
