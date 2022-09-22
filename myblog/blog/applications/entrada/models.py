@@ -5,7 +5,7 @@ from django.db import models
 from django.conf import settings
 #
 from django.template.defaultfilters import slugify
-
+from django.urls import reverse_lazy
 # Apps Terceros
 from model_utils.models import TimeStampedModel
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -67,6 +67,7 @@ class Entry(TimeStampedModel):
    
     slug = models.SlugField(editable=False, max_length=300) # Atributo para trabajar con las URLS generadas automáticamente , para el SEO
 
+
     objects  = EntryManager()
     class Meta:
         verbose_name = "Entrada"
@@ -91,3 +92,16 @@ class Entry(TimeStampedModel):
         self.slug = slugify(slug_unique) #convierto mi cadena de texto en un slug para que puda estar en la url
 
         super(Entry, self).save(*args, **kwargs ) # De esta forma genero el slug unico para la URL a fin de mejorar con el SEO
+
+    def get_absolute_url(self):
+        # Aquí tenemos que definir cómo es que se crea la url para cada una de las entradas, entonces revisando mi urls.py
+        # se tiene    
+        # 'entrada/<slug>/', views.EntryDetailView.as_view(), name='entry-detail'
+        # Entonces esta es la URL que necesitaremos para el posicionamiento
+
+        return reverse_lazy(
+            'entrada_app:entry-detail', 
+            kwargs = { # con el kwargs mando el parametro de la url que en este caso seria el slug
+                'slug': self.slug
+            }
+        )

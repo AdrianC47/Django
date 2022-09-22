@@ -24,25 +24,25 @@ urlpatterns_main = [
 
 #Objeto Sitemap que genera xml
 sitemaps = {
-    # Indicamos que el mapa del sitio se genere en base a una estructura
+    # Indicamos que el mapa del sitio se genere en base a una estructura (Sitemap creado)
     'site':Sitemap(
         [  
             'home_app:index' # indicamos que la estructura está basada principalmente en nuestra URL principal/raíz
         ]
     ),
     #ahora ya irían nuestras URLS secundarias
-    'entradas': EntrySitemap
+    'entradas': EntrySitemap #arquitectura
 } 
 
 #URLS generadas
 urlpatterns_sitemap = [
       
     path(
-        'sitemap.xml', #   nombrePag
+        'sitemap.xml', #   nombrePag/path
         sitemap, # |Indico que es una Estructura SiteMap
-        {'sitemaps':sitemaps}, #|Estructura Nuestra  
+        {'sitemaps':sitemaps}, #|Estructura Nuestra, objeto creado  
         name='django.contrib.sitemaps.views.sitemap')
  ]
 
-#Este es el que se lee, entonces concatenamos todas las URLS
+#Este es el que se lee el propio , entonces concatenamos todas las URLS
 urlpatterns =  urlpatterns_main + urlpatterns_sitemap
