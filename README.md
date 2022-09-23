@@ -14,6 +14,9 @@ Django Model Utils (para no repetir codigo en los modelos) <==pip install django
 
 python manage.py migrate -- fake <= Falsa migracion, nos sirve cuando los modelos ya estan creados y hemos reestrcturado nuestro proyecto pero queremos migrar y evitamos el error
 
+========================================================
+Django REST Framework ==> pip install djangorestframework
+
 En caso de que obtener el error django.db.utils.ProgrammingError: relation does not exist LINE 1 
 revisar si estan las carpetas migrations en cada app
 
