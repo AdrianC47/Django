@@ -6,7 +6,7 @@ new Vue({
   mounted() {
     var self = this;
     // cargamos lista de personas
-    axios.get('api/persona/lista/')
+    axios.get('/api/persona/lista/')
       .then(function (response) {
         self.listaPersonas = response.data;
       })
