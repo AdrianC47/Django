@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 #
 from rest_framework.generics import ListAPIView
 
@@ -22,3 +22,7 @@ class PersonListApiView(ListAPIView):
 
     def get_queryset(self):
         return Person.objects.all() #Hago que me retorne toa la lista de Personas
+
+
+class PersonListView(TemplateView):
+    template_name = "persona/lista.html"
