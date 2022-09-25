@@ -23,4 +23,8 @@ urlpatterns =[
         views.PersonSearchApiView.as_view(),
         name='lista'
     ),    
+    path(
+        'api/persona/create/',
+        views.PersonCreateView.as_view(),
+    ),    
 ]
