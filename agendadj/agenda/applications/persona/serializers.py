@@ -84,3 +84,22 @@ class ReunionSerializer2(serializers.ModelSerializer):
     
     def get_fecha_hora(self, obj): #se antepone el get al metodo
         return str(obj.fecha) + ' - ' + str(obj.hora) #el obj hace referencia a la instancia
+
+
+class ReunionSerializerLink(serializers.HyperlinkedModelSerializer):
+ 
+
+    class Meta:
+        model = Reunion
+        fields = (
+            'id',
+            'fecha',
+            'hora',
+            'asunto',
+            'persona',
+        )
+        extra_kwargs = {
+            #Aquí especificamos qué atributo tipo modelo queremos que sea un link
+            'persona': {'view_name':'persona_app:detalle-persona', 'lookup_field':'pk'}
+        }
+ 
