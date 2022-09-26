@@ -1,7 +1,7 @@
 #
 from dataclasses import fields
 from email.policy import default
-from rest_framework import serializers
+from rest_framework import serializers, pagination
 from .models import Hobby, Person, Reunion
 
 class PersonSerializer(serializers.ModelSerializer):
@@ -103,3 +103,7 @@ class ReunionSerializerLink(serializers.HyperlinkedModelSerializer):
             'persona': {'view_name':'persona_app:detalle-persona', 'lookup_field':'pk'}
         }
  
+class PersonPagination (pagination.PageNumberPagination):
+    page_size = 5 #Especifico de cuanto en cuanto quiero que pagine
+    max_page_size = 100 #Especifico el tamaño maximo de registros 
+    
