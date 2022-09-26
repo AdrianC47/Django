@@ -2,7 +2,8 @@ from ast import keyword
 from django.shortcuts import render
 from django.views.generic import ListView, TemplateView
 #
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, DestroyAPIView
+from rest_framework.generics import (  ListAPIView, CreateAPIView, 
+RetrieveAPIView, DestroyAPIView, UpdateAPIView, RetrieveUpdateAPIView)
 
 from .models import Person
 #
@@ -58,3 +59,15 @@ class PersonDeleteView(DestroyAPIView):
 
     serializer_class = PersonSerializer
     queryset= Person.objects.all() #Ojo que tambien se pueden hacer filtros
+
+class PersonUpdateView(UpdateAPIView):
+
+    serializer_class = PersonSerializer
+    queryset= Person.objects.all()
+
+class PersonRetrieveUpdateView(RetrieveUpdateAPIView):
+
+    serializer_class = PersonSerializer
+    queryset= Person.objects.all()
+
+  
