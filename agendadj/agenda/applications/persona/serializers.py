@@ -16,3 +16,11 @@ class PersonaSerializer(serializers.Serializer): # No trabaja directamente con  
     email = serializers.EmailField()
     phone = serializers.CharField()
     activo = serializers.BooleanField(required=False)
+
+
+class PersonaSerializer2(serializers.ModelSerializer):
+
+    activo = serializers.BooleanField(default=False)
+    class Meta:
+        model = Person
+        fields = ('__all__')
