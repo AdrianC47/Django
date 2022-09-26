@@ -48,8 +48,9 @@ urlpatterns =[
         'api/personas/',
         views.PersonApiLista.as_view(),
     ),    
+    
     path(
-        'api/personas2/',
-        views.PersonApiLista2.as_view(),
+        'api/reuniones/',
+        views.ReunionApiLista.as_view(),
     ),    
 ]

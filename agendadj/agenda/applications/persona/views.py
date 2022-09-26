@@ -2,12 +2,24 @@ from ast import keyword
 from django.shortcuts import render
 from django.views.generic import ListView, TemplateView
 #
-from rest_framework.generics import (  ListAPIView, CreateAPIView, 
-RetrieveAPIView, DestroyAPIView, UpdateAPIView, RetrieveUpdateAPIView)
+from rest_framework.generics import (
+      ListAPIView,
+      CreateAPIView, 
+      RetrieveAPIView,
+      DestroyAPIView,
+      UpdateAPIView,
+      RetrieveUpdateAPIView
+)
 
-from .models import Person
+from .models import Person, Reunion
 #
-from .serializers import PersonSerializer, PersonaSerializer, PersonaSerializer2
+from .serializers import ( 
+    PersonSerializer,
+    PersonaSerializer,
+    PersonaSerializer2,
+    PersonaSerializer3,
+    ReunionSerializer,
+)
 
 
 class ListaPersonas(ListView):
@@ -76,16 +88,17 @@ class PersonApiLista(ListAPIView):
     """
         Vista para interactuar con Serializadores
     """
-    serializer_class = PersonaSerializer
+    #serializer_class = PersonaSerializer
+    serializer_class = PersonaSerializer3
     def get_queryset(self): # Con esto genero una Lista
         return Person.objects.all() #Hago que me retorne toa la lista de Personas
 
 
-class PersonApiLista2(ListAPIView):
-    """
-        Vista para interactuar con Serializadores
-    """
-    serializer_class = PersonaSerializer2
+ 
+
+class ReunionApiLista(ListAPIView):
+
+    serializer_class = ReunionSerializer
     def get_queryset(self):  
-        return Person.objects.all() 
+        return Reunion.objects.all() 
 

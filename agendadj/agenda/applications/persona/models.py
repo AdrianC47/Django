@@ -11,6 +11,8 @@ from django.db import models
 class Hobby(TimeStampedModel):
     """Pasatiempos"""
     hobby = models.CharField('PasaTiempo', max_length=50)
+    def __str__(self):
+        return str(self.id) +' ' + self.hobby
 
 
 class Person(TimeStampedModel):
@@ -35,7 +37,7 @@ class Person(TimeStampedModel):
         blank=True,
     )
 
-    hobbie = models.ManyToManyField(Hobby)
+    hobbies = models.ManyToManyField(Hobby)
 
 
     class Meta:
@@ -60,4 +62,4 @@ class Reunion(TimeStampedModel):
         verbose_name_plural = 'Reuniones'
 
     def __str__(self):
-        return self.asunto + ' ' + self.id
+        return self.asunto + ' ' + str(self.id)
