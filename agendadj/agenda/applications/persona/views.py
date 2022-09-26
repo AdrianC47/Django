@@ -2,7 +2,7 @@ from ast import keyword
 from django.shortcuts import render
 from django.views.generic import ListView, TemplateView
 #
-from rest_framework.generics import ListAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, DestroyAPIView
 
 from .models import Person
 #
@@ -45,3 +45,16 @@ class PersonSearchApiView (ListAPIView): #Crearemos otra vista de tipo API para 
 class PersonCreateView(CreateAPIView):
 
     serializer_class = PersonSerializer
+
+
+class PersonDetailView(RetrieveAPIView): # Vista para ver el detalle API de una clase
+    # A diferencia del DetailView, aqui ya no se trabaja con el parámetro model sino con el parámetro query set
+    # Donde dentro de éste parámetro voy a especificar un conjunto de datos donde se va a hacer la búsqueda
+
+    serializer_class = PersonSerializer
+    queryset= Person.objects.all() #Ojo que tambien se pueden hacer filtros
+
+class PersonDeleteView(DestroyAPIView):
+
+    serializer_class = PersonSerializer
+    queryset= Person.objects.all() #Ojo que tambien se pueden hacer filtros
