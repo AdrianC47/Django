@@ -61,3 +61,26 @@ class PersonaSerializer3(serializers.ModelSerializer):
             'hobbies',
             'created',
         )
+
+class ReunionSerializer2(serializers.ModelSerializer):
+
+#Qué pasaría si además de añadir un atributo extra al serializador relacionado con el modelo
+#pues quiero que éster atributo sea el resultado de operar los valores que sí tengo en base al modelo?
+#Pues mando un método
+
+    fecha_hora = serializers.SerializerMethodField()
+    # persona = PersonSerializer() 
+
+    class Meta:
+        model = Reunion
+        fields = (
+            'id',
+            'fecha',
+            'hora',
+            'asunto',
+            'persona',
+            'fecha_hora', #añado el método así no sea parte del modelo
+        )
+    
+    def get_fecha_hora(self, obj): #se antepone el get al metodo
+        return str(obj.fecha) + ' - ' + str(obj.hora) #el obj hace referencia a la instancia
