@@ -7,7 +7,7 @@ RetrieveAPIView, DestroyAPIView, UpdateAPIView, RetrieveUpdateAPIView)
 
 from .models import Person
 #
-from .serializers import PersonSerializer
+from .serializers import PersonSerializer, PersonaSerializer
 
 
 class ListaPersonas(ListView):
@@ -70,4 +70,12 @@ class PersonRetrieveUpdateView(RetrieveUpdateAPIView):
     serializer_class = PersonSerializer
     queryset= Person.objects.all()
 
-  
+# Call for Serializers.Serializer
+
+class PersonApiLista(ListAPIView):
+    """
+        Vista para interactuar con Serializadores
+    """
+    serializer_class = PersonaSerializer
+    def get_queryset(self): # Con esto genero una Lista
+        return Person.objects.all() #Hago que me retorne toa la lista de Personas

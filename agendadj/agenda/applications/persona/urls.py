@@ -43,4 +43,9 @@ urlpatterns =[
         'api/persona/modificar/<pk>/',
         views.PersonRetrieveUpdateView.as_view(),
     ),    
+    # Url para interactuar con serializadores
+    path(
+        'api/personas/',
+        views.PersonApiLista.as_view(),
+    ),    
 ]
