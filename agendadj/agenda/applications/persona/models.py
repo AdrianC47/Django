@@ -3,8 +3,8 @@ from tabnanny import verbose
 from model_utils.models import TimeStampedModel
 #
 from django.db import models
-
-
+#
+from .managers import ReunionManager
 
 #
 
@@ -57,6 +57,7 @@ class Reunion(TimeStampedModel):
         max_length=100
     )
 
+    objects =  ReunionManager()
     class Meta:
         verbose_name = 'Reunion'
         verbose_name_plural = 'Reuniones'
