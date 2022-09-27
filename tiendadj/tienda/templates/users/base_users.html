@@ -7,5 +7,50 @@
 {% endblock css %}
 
 {% block js %}
+<script src="https://www.gstatic.com/firebasejs/9.9.4/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.9.4/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.9.4/firebase-auth-compat.js"></script>
+<script>
 
+        // Your web app's Firebase configuration
+        const firebaseApp = firebase.initializeApp(  {
+          apiKey: "AIzaSyALa0EVN8yBUivKOaPRexmwpGZX4cAc3ss",
+          authDomain: "django-pro-305b9.firebaseapp.com",
+          projectId: "django-pro-305b9",
+          storageBucket: "django-pro-305b9.appspot.com",
+          messagingSenderId: "1025069674087",
+          appId: "1:1025069674087:web:0d658ae15e6930ad58aec2"
+        });
+ 
+    function loginGoogle() {
+        const db = firebaseApp.firestore();
+        const auth = firebaseApp.auth();
+        var provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth()
+                .signInWithPopup(provider)
+                .then((result) => {
+                    /** @type {firebase.auth.OAuthCredential} */
+                    var credential = result.credential;
+
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    var token = credential.accessToken;
+                    // The signed-in user info.
+                    var user = result.user;
+                    console.log('*************************')
+                    console.log(user)
+                    // ...
+                }).catch((error) => {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // The email of the user's account used.
+                    var email = error.email;
+                    // The firebase.auth.AuthCredential type that was used.
+                    var credential = error.credential;
+                    console.log('=========================')
+                    console.log(error)
+                    // ...
+                });
+    }
+</script>
 {% endblock js %}
