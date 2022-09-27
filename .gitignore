@@ -2,6 +2,7 @@
 usuariosdj/usuarios/secret.json
 agendadj/agenda/secret.json
 #
-tienda/applications/home/migrations/*
+tiendadj/tienda/applications/home/migrations/*
 #
-tienda/applications/users/migrations/*
+tiendadj/tienda/applications/users/migrations/*
+tiendadj/tienda/secret.json
