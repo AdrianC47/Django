@@ -6,3 +6,4 @@ tiendadj/tienda/applications/home/migrations/*
 #
 tiendadj/tienda/applications/users/migrations/*
 tiendadj/tienda/secret.json
+tiendadj/tienda/fbkey.json

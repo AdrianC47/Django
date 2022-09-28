@@ -1,4 +1,8 @@
 from .base import *
+
+# 
+import firebase_admin
+from firebase_admin import credentials, auth
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -25,3 +29,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']#Dentro de mi directorio base busco mi c
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+cred = credentials.RefreshToken('fbkey.json')
+firebase_admin.initialize_app(cred)
+

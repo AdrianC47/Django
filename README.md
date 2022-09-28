@@ -17,6 +17,8 @@ python manage.py migrate -- fake <= Falsa migracion, nos sirve cuando los modelo
 ========================================================
 Django REST Framework ==> pip install djangorestframework
 
+SDK Firebase Python ==> pip install firebase-admin
+
 En caso de que obtener el error django.db.utils.ProgrammingError: relation does not exist LINE 1 
 revisar si estan las carpetas migrations en cada app
 
