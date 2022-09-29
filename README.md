@@ -19,6 +19,10 @@ Django REST Framework ==> pip install djangorestframework
 
 SDK Firebase Python ==> pip install firebase-admin
 
+Crear Copia de Seguridad con Django => python manage.py dumpdata
+
+Volvar Copia de Seguridad con Django => python manage.py loaddata nombre_copia_bd.json
+
 En caso de que obtener el error django.db.utils.ProgrammingError: relation does not exist LINE 1 
 revisar si estan las carpetas migrations en cada app
 

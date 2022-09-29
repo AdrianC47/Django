@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from django.conf import settings
 
@@ -62,10 +63,10 @@ class Product(TimeStampedModel):
         'imagen principal',
         upload_to='producto',
     ) # imagen principal del producto
-    image1 = models.ImageField('Imagen 1', blank=True, null=True)
-    image2 = models.ImageField('Imagen 2', blank=True, null=True)
-    image3 = models.ImageField('Imagen 3', blank=True, null=True)
-    image4 = models.ImageField('Imagen 4', blank=True, null=True)
+    image1 = models.ImageField('Imagen 1', blank=True, null=True, upload_to = 'producto')
+    image2 = models.ImageField('Imagen 2', blank=True, null=True, upload_to = 'producto') 
+    image3 = models.ImageField('Imagen 3', blank=True, null=True, upload_to = 'producto')
+    image4 = models.ImageField('Imagen 4', blank=True, null=True, upload_to = 'producto')
     colors = models.ManyToManyField(Colors)
     video = models.URLField('unboxin', blank=True, null=True)
     stok = models.PositiveIntegerField('Stok', default=0)
