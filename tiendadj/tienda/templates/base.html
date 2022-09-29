@@ -10,10 +10,9 @@
   </head>
   <body>
     {% block content %} {% endblock content %} {% block js %}
-    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.9.4/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.9.4/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.9.4/firebase-auth-compat.js"></script>
 
     <script>
       function loginGoogle() {
@@ -44,10 +43,25 @@
 
             // This gives you a Google Access Token. You can use it to access the Google API.
             var token = result.credential.idToken;
+            var token2 = result.credential.accessToken;
             // The signed-in user info.
             var user = result.user;
+            //Recuperar ID token user
+            user.getIdToken().then
+                (function(idToken) {
+                  // Send token to your backend via HTTPS
+                  console.log(idToken)
+                  console.log(":D!!!!")
+                }).catch(function(error) {
+                  console.log(':C error +++++++++++++++++')
+                  console.log(error)
+                });
+            
+            //
             console.log("*************************");
-            console.log(token);
+            // console.log(result.credential);
+            // console.log(token);
+            // console.log(token2);
             document.getElementById("labelparaToken").innerHTML = token;
             // ...
           })

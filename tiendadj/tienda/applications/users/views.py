@@ -60,7 +60,7 @@ class GoogleLoginView(APIView):
 
         # Ahora devuelvo al frontend
         userGet = {
-            'id': usuario.id,
+            'id': usuario.pk,
             'email': usuario.email,
             'full_name': usuario.full_name,
             'genero':usuario.genero,
