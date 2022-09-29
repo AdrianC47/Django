@@ -10,6 +10,7 @@
   </head>
   <body>
     {% block content %} {% endblock content %} {% block js %}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.9.4/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.9.4/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.9.4/firebase-auth-compat.js"></script>
@@ -31,7 +32,7 @@
 
         cerrarSesion();
         var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().languageCode = "it";
+ 
 
         // se cambio el signInWithPopup  por el signInWithRedirect debido a que arrojaba error
         firebase
@@ -50,8 +51,15 @@
             user.getIdToken().then
                 (function(idToken) {
                   // Send token to your backend via HTTPS
+
                   console.log(idToken)
                   console.log(":D!!!!")
+                  var data = {'token_id':idToken}
+                  axios.post('/api/google-login/', data).then( //indico la URL donde quiero que haga POST
+                      function (response) {
+                        console.log(response);
+                      }
+                  ) 
                 }).catch(function(error) {
                   console.log(':C error +++++++++++++++++')
                   console.log(error)
