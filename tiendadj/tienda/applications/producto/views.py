@@ -1,3 +1,14 @@
-from django.shortcuts import render
+#Siempre los paquetes de terceros
+from rest_framework.generics import ListAPIView
 
-# Create your views here.
+from django.shortcuts import render
+#
+from .serializers import ProductSerializer
+#
+from .models import Product
+
+class ListProductUser(ListAPIView):
+    serializer_class = ProductSerializer
+
+    def get_queryset(self):
+        return Product.objects.all()
