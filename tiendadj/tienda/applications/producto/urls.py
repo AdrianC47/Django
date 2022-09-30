@@ -12,4 +12,9 @@ urlpatterns =[
         views.ListProductUser.as_view(),
         name='product-producto_by_user'
     ), 
+    path(
+        'api/product/con-stock/',
+        views.ListProductoStock.as_view(),
+        name='product-producto_con_stock'
+    ), 
 ]

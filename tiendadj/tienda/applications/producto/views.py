@@ -1,7 +1,7 @@
 #Siempre los paquetes de terceros
 from rest_framework.generics import ListAPIView
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,IsAdminUser
 
 from django.shortcuts import render
 #
@@ -20,3 +20,13 @@ class ListProductUser(ListAPIView):
         Usuario = self.request.user
         print(Usuario)
         return Product.objects.productos_por_user(Usuario)
+
+class ListProductoStock(ListAPIView):
+    # Se lista todos los productos que tienen stock
+    serializer_class = ProductSerializer
+    #authentication_classes = (TokenAuthentication,) #Esto unicamente hace la autenticación, verifica que el Token EXISTE o que le pertenece a un usuario
+    permission_classes = [IsAuthenticated, IsAdminUser] #Doy permiso de mostrar la View  solo si está autenticado y si el usuario es admin
+
+    def get_queryset(self):
+
+        return Product.objects.productos_con_stock()
