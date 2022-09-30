@@ -18,4 +18,5 @@ class ListProductUser(ListAPIView):
         # Para recuperar un usuario:
         print('***************')
         Usuario = self.request.user
+        print(Usuario)
         return Product.objects.productos_por_user(Usuario)
