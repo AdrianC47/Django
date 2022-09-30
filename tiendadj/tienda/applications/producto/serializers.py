@@ -1,10 +1,18 @@
 from dataclasses import fields
-import imp
 from rest_framework import serializers
 #
-from .models import Product
+from .models import Product, Colors
 
+class ColorsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Colors
+        fields = (
+            'color',
+        )
 class ProductSerializer(serializers.ModelSerializer):
+
+    colors = ColorsSerializer(many=True)
     class Meta:
         model = Product
         fields = (
