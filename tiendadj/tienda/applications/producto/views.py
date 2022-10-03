@@ -12,7 +12,7 @@ from .models import Product
 class ListProductUser(ListAPIView):
     serializer_class = ProductSerializer
     authentication_classes = (TokenAuthentication,)
-    permission_classes = [IsAuthenticated] #Doy permiso de mostrar la View  solo si está autenticado
+    permissiousern_classes = [IsAuthenticated] #Doy permiso de mostrar la View  solo si está autenticado
 
     def get_queryset(self):
         # Para recuperar un usuario:
