@@ -2,6 +2,8 @@ from django.db import models
 from django.conf import settings
 
 #
+from .managers import SaleDetailManager
+#
 from model_utils.models import TimeStampedModel
 
 # local apps
@@ -104,6 +106,7 @@ class SaleDetail(TimeStampedModel):
     )
     anulate = models.BooleanField(default=False)
     #
+    objects = SaleDetailManager()
 
     class Meta:
         verbose_name = 'Detalle Venta'
