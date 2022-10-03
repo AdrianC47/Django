@@ -45,6 +45,11 @@ class DetalleVentaProductoSerializer(serializers.ModelSerializer):
             'price_purchase',
             'price_sale',
         )
+        
+
+class ProductDetailSerializers(serializers.Serializer):
+    pk = serializers.IntegerField() 
+    count = serializers.IntegerField()
 
 class ProcesoVentaSerializer(serializers.Serializer):
 
@@ -53,6 +58,3 @@ class ProcesoVentaSerializer(serializers.Serializer):
     adreese_send = serializers.CharField()
     productos = ProductDetailSerializers(many=True)
 
-class ProductDetailSerializers(serializers.Serializer):
-    pk = serializers.IntegerField()
-    count = serializers.IntegerField()

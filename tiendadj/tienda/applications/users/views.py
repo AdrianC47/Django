@@ -54,7 +54,7 @@ class GoogleLoginView(APIView):
         )
         # 
         if created:
-            token = Token.objects.create(user = usuario)
+            token = Token.objects.create(user = usuario)    
         else:
             token = Token.objects.get(user=usuario)
 
