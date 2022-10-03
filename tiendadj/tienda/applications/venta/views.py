@@ -1,3 +1,5 @@
+#
+from django.utils import timezone
 from django.shortcuts import render
 
 from rest_framework.generics import ListAPIView, CreateAPIView
@@ -29,8 +31,8 @@ class ReporteVentasList(ListAPIView):
 class RegistrarVenta(CreateAPIView):
     """ """
     #Para poder registrar una venta necesito un usuario con permisos
-    # authentication_classes = (TokenAuthentication,)
-    # permission_classes= [IsAuthenticated]
+    authentication_classes = (TokenAuthentication,)
+    permission_classes= [IsAuthenticated]
 
     serializer_class = ProcesoVentaSerializer
 
@@ -40,7 +42,20 @@ class RegistrarVenta(CreateAPIView):
         # Ahora debemos validar si la información es válida
         serializer.is_valid(raise_exception = True) # con el raise indico que me mande una excepción en caso de que los datos no sean correctos
         #Ahora recupero la info que nos están mandando
-        tipo_recibo = serializer.validated_data['type_invoce']
-        print('*******', tipo_recibo)
+        # tipo_recibo = serializer.validated_data['type_invoce']
+        # print('*******', tipo_recibo)
+        venta =  Sale.objects.create(
+            date_sale =  timezone.now(),   
+            amount =0,
+            count = 0,
+            type_invoce = serializer.validated_data['type_invoce'], 
+            type_payment = serializer.validated_data['type_payment'], 
+            adreese_send = serializer.validated_data['adreese_send'], 
+            user = self.request.user,
+        # Los demás datos se están poniendo por default 
+        )
+        # Recuperamos  los productos de la venta
+        productos = serializer.validated_data['productos']
+        print('&&&&&& ', productos) 
         return Response({'code': 'ok'}) #Ojo que siempre un CreateAPIView necesita un response como retorno
 
