@@ -14,3 +14,12 @@ class ReporteVentasList(ListAPIView):
     def get_queryset(self):
     
         return Sale.objects.all()
+
+class ReporteVentasList(ListAPIView):
+    
+    serializer_class = VentaReporteSerializers
+
+    def get_queryset(self):
+    
+        return Sale.objects.all()
+
