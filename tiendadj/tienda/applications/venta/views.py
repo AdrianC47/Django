@@ -3,6 +3,7 @@ from django.shortcuts import render
 from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated,IsAdminUser
+from rest_framework.response import Response
 
 #
 from .models import Sale, SaleDetail
@@ -41,5 +42,5 @@ class RegistrarVenta(CreateAPIView):
         #Ahora recupero la info que nos están mandando
         tipo_recibo = serializer.validated_data['type_invoce']
         print('*******', tipo_recibo)
-        return None
+        return Response({'code': 'ok'}) #Ojo que siempre un CreateAPIView necesita un response como retorno
 
