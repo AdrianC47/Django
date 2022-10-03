@@ -74,3 +74,4 @@ class GoogleLoginView(APIView):
                 'user': userGet
             }
         )
+

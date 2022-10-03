@@ -50,4 +50,16 @@ class ListProductoGenero(ListAPIView):
         genero = self.kwargs['gender']
         return Product.objects.productos_con_genero(genero)
 
+class FiltrarProductos(ListAPIView):
+    """ """
+    serializer_class = ProductSerializer 
 
+    def get_queryset(self):
+        varon = self.request.query_params.get('man',None) # De ésta forma recupero varios parámetros en Django Rest Framework
+        mujer = self.request.query_params.get('woman',None)
+        nombre = self.request.query_params.get('name',None)
+        return Product.objects.filtrar_productos(
+            man = varon,
+            woman = mujer,
+            name = nombre
+        )   
