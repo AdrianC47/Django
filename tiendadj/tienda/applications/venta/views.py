@@ -66,7 +66,6 @@ class RegistrarVenta(CreateAPIView):
         for producto in productos:
             prod = Product.objects.get(id=producto['pk']) #Ojo que aquí va pk debido a que en el serializador está como pk
 
-            # prod = Product.objects.filter(id__in)=[1,2,3,4,5,6] #De esta forma recupero los objetos con este id
             
             venta_detalle = SaleDetail( # Creo mi detalle de venta
                 sale = venta,
@@ -87,4 +86,64 @@ class RegistrarVenta(CreateAPIView):
         #
         SaleDetail.objects.bulk_create(ventas_detalle)  
         return Response({'mensaje': 'Venta exitosa'}) #Ojo que siempre un CreateAPIView necesita un response como retorno
+
+class RegistrarVenta2(CreateAPIView):
+    """ """
+    #Para poder registrar una venta necesito un usuario con permisos
+    authentication_classes = (TokenAuthentication,)
+    permission_classes= [IsAuthenticated]
+
+    serializer_class = ProcesoVentaSerializer2
+
+    def create(self, request, *args, **kwargs): #función a sobreescrbir
+        serializer = ProcesoVentaSerializer2(data=request.data) #aquí descerializo lo que recibo a través del POST
+        #
+        # Ahora debemos validar si la información es válida
+        serializer.is_valid(raise_exception = True) # con el raise indico que me mande una excepción en caso de que los datos no sean correctos
+        #Ahora recupero la info que nos están mandando
+        # tipo_recibo = serializer.validated_data['type_invoce']
+        # print('*******', tipo_recibo)
+        venta =  Sale.objects.create(
+            date_sale =  timezone.now(),   
+            amount =0,
+            count = 0,
+            type_invoce = serializer.validated_data['type_invoce'], 
+            type_payment = serializer.validated_data['type_payment'], 
+            adreese_send = serializer.validated_data['adreese_send'], 
+            user = self.request.user,
+        # Los demás datos se están poniendo por default 
+        )
+        # variables para venta
+        amount = 0 # monto total de venta
+        count = 0
+        # Recuperamos  los productos de la venta
+        productos = Product.objects.filter(
+            id__in= serializer.validated_data['productos'] #De esta forma recupero un array con id de los productos
+
+        )
+        #
+        cantidades = serializer.validated_data['cantidades']
+        #
+        ventas_detalle = []
+        #
+        for producto, cantidad in zip(productos, cantidades):
+            venta_detalle = SaleDetail( # Creo mi detalle de venta
+                sale = venta,
+                product = producto,
+                count = cantidad, #gracias a que puedo iterar dos listas pues logro asignar la cantidad de un producto recorriendo el for en armonia con el mismo producto que corresponda 
+                price_purchase = producto.price_purchase, # atributo propio del modelo
+                price_sale = producto.price_sale, 
+            )
+            amount= amount + producto.price_sale * cantidad  # saco el monto toal
+            count = count + cantidad # saco la cantidad
+            #Añado mi detalle a mi lista de detalles
+            ventas_detalle.append(venta_detalle)
+        
+        venta.amount =amount
+        venta.count = count # Cantidad de Productos
+        venta.save()
+
+        #
+        SaleDetail.objects.bulk_create(ventas_detalle)  
+        return Response({'mensaje': 'Venta exitosa 2'}) #Ojo que siempre un CreateAPIView necesita un response como retorno
 
