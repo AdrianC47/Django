@@ -9,6 +9,7 @@ from rest_framework.response import Response
 
 #
 from .models import Sale, SaleDetail
+from applications.producto.models import Product
 # Serializadores
 from .serializers import VentaReporteSerializers, ProcesoVentaSerializer
 
@@ -54,8 +55,34 @@ class RegistrarVenta(CreateAPIView):
             user = self.request.user,
         # Los demás datos se están poniendo por default 
         )
+        # variables para venta
+        amount = 0 # monto total de venta
+        count = 0
         # Recuperamos  los productos de la venta
         productos = serializer.validated_data['productos']
-        print('&&&&&& ', productos) 
-        return Response({'code': 'ok'}) #Ojo que siempre un CreateAPIView necesita un response como retorno
+        #
+        ventas_detalle = []
+        #
+        for producto in productos:
+            prod = Product.objects.get(id=producto['pk']) #Ojo que aquí va pk debido a que en el serializador está como pk
+            
+            venta_detalle = SaleDetail( # Creo mi detalle de venta
+                sale = venta,
+                product = prod,
+                count = producto['count'],#atributo del serializador y del modelo
+                price_purchase = prod.price_purchase, # atributo propio del modelo
+                price_sale = prod.price_sale, 
+            )
+            amount= amount + prod.price_sale * producto['count'] # saco el monto toal
+            count = count + producto['count'] # saco la cantidad
+            #Añado mi detalle a mi lista de detalles
+            ventas_detalle.append(venta_detalle)
+        
+        venta.amount =amount
+        venta.count = count # Cantidad de Productos
+        venta.save()
+
+        #
+        SaleDetail.objects.bulk_create(ventas_detalle)  
+        return Response({'mensaje': 'Venta exitosa'}) #Ojo que siempre un CreateAPIView necesita un response como retorno
 
