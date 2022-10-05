@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from .models import Sale, SaleDetail
 from applications.producto.models import Product
 # Serializadores
-from .serializers import VentaReporteSerializers, ProcesoVentaSerializer
+from .serializers import VentaReporteSerializers, ProcesoVentaSerializer, ProcesoVentaSerializer2
 
 class ReporteVentasList(ListAPIView):
     
@@ -65,6 +65,8 @@ class RegistrarVenta(CreateAPIView):
         #
         for producto in productos:
             prod = Product.objects.get(id=producto['pk']) #Ojo que aquí va pk debido a que en el serializador está como pk
+
+            # prod = Product.objects.filter(id__in)=[1,2,3,4,5,6] #De esta forma recupero los objetos con este id
             
             venta_detalle = SaleDetail( # Creo mi detalle de venta
                 sale = venta,
