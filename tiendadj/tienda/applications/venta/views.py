@@ -93,7 +93,7 @@ class RegistrarVenta2(CreateAPIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes= [IsAuthenticated]
 
-    serializer_class = ProcesoVentaSerializer2
+    serializer_class = ProcesoVentaSerializer2 # Serializador más optimo
 
     def create(self, request, *args, **kwargs): #función a sobreescrbir
         serializer = ProcesoVentaSerializer2(data=request.data) #aquí descerializo lo que recibo a través del POST
