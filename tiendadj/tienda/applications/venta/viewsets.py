@@ -1,9 +1,10 @@
 from django.utils import timezone
+from django.shortcuts import get_object_or_404
 
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated,IsAdminUser
+from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
 
 #
 from applications.producto.models import Product
@@ -16,9 +17,18 @@ from .models import Sale, SaleDetail
 
 class VentasViewSet(viewsets.ViewSet):
 
-    # authentication_classes = (TokenAuthentication,)
-    # permission_classes= [IsAuthenticated]
+    authentication_classes = (TokenAuthentication,)
     queryset= Sale.objects.all()
+
+    def get_permissions(self):
+        if (self.action=='list') or ((self.action=='retrieve')):
+            permission_classes= [AllowAny] #permitir acceso a todos
+        else:
+            permission_classes = [IsAuthenticated]
+        
+        #Retorna un conjunto de permisos que se han usado pero en base a una comprobacion
+        #dentro de todos los permisos que existen en Rest_Framework
+        return [permission() for permission in permission_classes] #<=es mas python y es la estructura que debe cumplir nuestro metodo
 
     def list(self, request, *args, **kwargs):
         queryset = Sale.objects.all() 
@@ -71,6 +81,7 @@ class VentasViewSet(viewsets.ViewSet):
 
 
     def retrieve(self, request, pk=None):
-        venta = Sale.objects.get(id=pk)
+        #mando primero la lista de las ventas y luego el pk de la venta que quiero
+        venta = get_object_or_404(Sale.objects.all(), pk=pk)
         serializer = VentaReporteSerializers(venta)
         return Response(serializer.data)
