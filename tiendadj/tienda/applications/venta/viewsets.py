@@ -16,8 +16,8 @@ from .models import Sale, SaleDetail
 
 class VentasViewSet(viewsets.ViewSet):
 
-    authentication_classes = (TokenAuthentication,)
-    permission_classes= [IsAuthenticated]
+    # authentication_classes = (TokenAuthentication,)
+    # permission_classes= [IsAuthenticated]
     queryset= Sale.objects.all()
 
     def list(self, request, *args, **kwargs):
@@ -71,4 +71,6 @@ class VentasViewSet(viewsets.ViewSet):
 
 
     def retrieve(self, request, pk=None):
-        return Response({'probando':'viewsets2'})
+        venta = Sale.objects.get(id=pk)
+        serializer = VentaReporteSerializers(venta)
+        return Response(serializer.data)
