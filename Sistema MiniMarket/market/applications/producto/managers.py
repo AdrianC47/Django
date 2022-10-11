@@ -57,11 +57,11 @@ class ProductManager(models.Manager):
         )
 
         if filters['order'] == 'name':
-            return consulta.order_by('name')
+            return consulta.order_by('name') # Nombre
         elif filters['order'] == 'stok':
-            return consulta.order_by('count')
+            return consulta.order_by('count') # Cantidad de productos
         elif filters['order'] == 'num':
-            return consulta.order_by('-num_sale')
+            return consulta.order_by('-num_sale') # numero de ventas
         else:
             return consulta.order_by('-created')
             
