@@ -177,7 +177,7 @@ class CarShopManager(models.Manager):
                 output_field=FloatField()
             ),
         )
-        if consulta['total']:
+        if consulta['total']: #si existe un total lo retorno
             return consulta['total']
         else:
             return 0            
