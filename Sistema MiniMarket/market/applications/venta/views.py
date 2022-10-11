@@ -78,7 +78,7 @@ class CarShopDeleteAll(VentasPermisoMixin, View):
     
     def post(self, request, *args, **kwargs):
         #
-        CarShop.objects.all().delete()
+        CarShop.objects.all().delete() #ELIMINO TODOS MIS REGISTROS DEL CARRITO
         #
         return HttpResponseRedirect(
             reverse(
