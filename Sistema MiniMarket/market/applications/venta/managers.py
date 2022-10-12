@@ -137,7 +137,6 @@ class SaleDetailManager(models.Manager):
         # recibe 3 parametros en un diccionario
         # devuelve lista de ventas en rango de fechas de un proveedor
         # y, devuelve el total de ventas en rango de fechas y de proveedor
-
         if filters['date_start'] and filters['date_end'] and filters['provider']:
             consulta = self.filter(
                 anulate=False,

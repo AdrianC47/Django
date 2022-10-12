@@ -163,7 +163,7 @@ class SaleDeleteView(VentasPermisoMixin, DeleteView):
     model = Sale
     success_url = reverse_lazy('venta_app:venta-index')
 
-    def delete(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         self.object.anulate = True
         self.object.save()
