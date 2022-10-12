@@ -10,7 +10,7 @@ from .models import Sale, SaleDetail, CarShop
 def procesar_venta(self, **params_venta):
     # recupera la lista de productos en carrtio
     productos_en_car = CarShop.objects.all()
-    if productos_en_car.count() > 0:
+    if productos_en_car.count() > 0: #verifico que existan productos
         
         # crea el objeto venta
         venta = Sale.objects.create(
