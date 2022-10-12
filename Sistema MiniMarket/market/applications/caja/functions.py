@@ -8,7 +8,7 @@ def detalle_ventas_no_cerradas():
     # recuepramos arry de id de ventas no cerradas
     ventas = Sale.objects.ventas_no_cerradas()
     consulta = ventas.prefetch_related(
-        Prefetch(
+        Prefetch( # hace una subconsulta en una lista ... lista de lista
             'detail_sale', 
             queryset=SaleDetail.objects.filter(sale__id__in=ventas).annotate(
                 subtotal=ExpressionWrapper(

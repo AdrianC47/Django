@@ -93,7 +93,6 @@ class SaleDetailManager(models.Manager):
         return consulta
     
     def restablecer_stok_num_ventas(self, id_venta):
-        print("holawijdfs")
         prods_en_anulados = []
         for venta_detail in self.filter(sale__id=id_venta): # obtengo mi venta detalle
             # actualizamos productos        ## cantidad de unidades en modelo producto + cantidad de unidades en detalle

@@ -167,7 +167,7 @@ class SaleDeleteView(VentasPermisoMixin, DeleteView):
         self.object = self.get_object()
         self.object.anulate = True
         self.object.save()
-        # actualizmos sl stok y ventas
+        # actualizmos sl stock y ventas
         
         SaleDetail.objects.restablecer_stok_num_ventas(self.object.id)
         success_url = self.get_success_url()
